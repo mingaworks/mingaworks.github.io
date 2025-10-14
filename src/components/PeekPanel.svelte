@@ -88,15 +88,25 @@
         {#if stack.length > 1}
           <button class="px-3 py-1 text-sm" on:click={handleBack}>◀ Back</button>
         {/if}
-        <h2 class="text-lg font-semibold">
-          {#if stack.length}
-            {#if stack[stack.length -1].type === 'service'}
-              {stack[stack.length -1].props.service.title}
-            {:else}
-              {stack[stack.length -1].type}
+          <h2 class="text-lg font-semibold">
+            {#if stack.length}
+              {#if stack[stack.length -1].type === 'service'}
+                <!-- for individual service entries show the service title (no duplicate prefix) -->
+                {stack[stack.length -1].props.service.title}
+              {:else}
+                <!-- map peek root types to the Minga.<name> pattern -->
+                {#if stack[stack.length -1].type === 'services'}
+                  Minga.works
+                {:else if stack[stack.length -1].type === 'projects'}
+                  Minga.projects
+                {:else if stack[stack.length -1].type === 'hands'}
+                  Minga.hands
+                {:else}
+                  {stack[stack.length -1].type}
+                {/if}
+              {/if}
             {/if}
-          {/if}
-        </h2>
+          </h2>
       </div>
       <div>
         <button class="px-3 py-1 text-lg" on:click={handleClose}>X</button>
