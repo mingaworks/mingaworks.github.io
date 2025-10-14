@@ -99,7 +99,7 @@
         </h2>
       </div>
       <div>
-        <button class="px-3 py-1 text-sm" on:click={handleClose}>Close</button>
+        <button class="px-3 py-1 text-lg" on:click={handleClose}>X</button>
       </div>
     </div>
 
