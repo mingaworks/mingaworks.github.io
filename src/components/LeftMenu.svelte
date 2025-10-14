@@ -1,5 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
+  import { fly } from 'svelte/transition';
   import { get } from "svelte/store";
   import { leftMenuOffset, peekStack } from "../stores/ui.js";
   import theme, { toggleTheme } from '../stores/theme.js';
@@ -355,9 +356,13 @@
 
       <!-- left menu no longer renders the services submenu; all content is shown in the PeekPanel stack -->
     </nav>
-      <!-- Theme toggle -->
-  <div class="p-3" style="background-color:var(--color-surface); border-color:transparent">
-        <div class="flex items-center justify-between">
+    {#if expanded}
+      <!-- Theme toggle (only visible when menu is expanded) -->
+      <div class="p-3" style="background-color:var(--color-surface); border-color:transparent">
+        <!-- align the toggle to the right side of the expanded menu -->
+            <div class="flex items-center justify-end" style="width:100%; padding-right:6px;">
+              <!-- animate entrance from the right with a small fade/slide -->
+              <div in:fly={{ x: 8, duration: 220 }} out:fly={{ x: 8, duration: 180 }}>
           <button
             class="relative inline-flex items-center h-7 w-14 rounded-full transition-colors focus:outline-none"
             on:click={() => toggleTheme()}
@@ -379,9 +384,11 @@
                 <img src="/icons/sun.svg" alt="Light" class="w-4 h-4 m-1 menu-icon toggle-icon" aria-hidden="true" />
               {/if}
             </span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
+    {/if}
   </div>
 </div>
 
