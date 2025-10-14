@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.svelte";
+import Footer from "../components/Footer.astro";
+import ContactModal from "../components/ContactModal.svelte";
+import AboutSection from "../components/AboutSection.astro";
+---
+
+<BaseLayout>
+  <Hero client:load />
+  <AboutSection />
+  <section class="py-20 bg-gray-50">
+    <ContactModal client:load />
+  </section>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import { SITE_TITLE } from "../lib/constants.js";
+import LeftMenu from "../components/LeftMenu.svelte";
+import Services from "../components/Services.svelte";
+import PeekPanel from "../components/PeekPanel.svelte";
+import LayoutSync from "../components/LayoutSync.svelte";
+import HandsPanel from "../components/HandsPanel.svelte";
+import ProjectsPanel from "../components/ProjectsPanel.svelte";
+
+const { title = SITE_TITLE, showPeek = true } = Astro.props;
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="font-sans antialiased"
+    style="background-color:var(--color-bg); color:var(--color-text)"
+  >
+    <LayoutSync client:load />
+    <div class="app-grid">
+      <LeftMenu client:load />
+      {
+        showPeek ? (
+          <PeekPanel client:load>
+            <div slot="services-root">
+              <Services />
+            </div>
+            <div slot="projects-root">
+              <ProjectsPanel />
+            </div>
+            <div slot="hands-root">
+              <HandsPanel />
+            </div>
+          </PeekPanel>
+        ) : null
+      }
+      <main class="min-h-screen">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

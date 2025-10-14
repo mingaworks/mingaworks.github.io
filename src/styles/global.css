@@ -1,0 +1,102 @@
+@import "@fontsource/source-code-pro/index.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variable fallbacks and grid */
+:root {
+  /* Layout tokens */
+  --left-menu-offset: 160px;
+  --peek-width: 0px;
+
+  /* Design tokens (colors) - canonical values live here and are referenced by Tailwind via var() */
+
+  /* Spacing scale adjustments (if needed) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+
+  /* Centralized design tokens (semantic colors) */
+  --color-bg: #ffffff; /* page background */
+  --color-surface: #ffffff; /* panels, cards */
+  --color-text: #0f172a; /* primary text (gray-900) */
+  --color-muted: #6b7280; /* secondary text (gray-500) */
+  --color-border: #e5e7eb; /* gray-200 */
+  --color-hover: #f3f4f6; /* hover surface (gray-100) */
+  --color-switch-track: #e5e7eb; /* default track */
+  --color-switch-knob: #ffffff; /* knob background */
+  /* keep existing semantic tokens mapped to vars */
+  /* Primary and accent colors */
+  --color-primary: #3e223b; /* deep plum */
+  --color-accent: #22c15e; /* green */
+}
+
+/* dark mode overrides — these will be applied when .dark is set on <html> */
+.dark {
+  --color-bg: #0b1220; /* near-black navy */
+  --color-surface: #071022; /* slightly different panel surface */
+  --color-text: #e6eef8; /* light text */
+  --color-muted: #9aa6b2; /* muted */
+  --color-border: #11202b; /* border in dark */
+  --color-hover: #0f1724; /* hover surface */
+  --color-switch-track: #334155; /* track in dark */
+  --color-switch-knob: #0b1220; /* knob when dark */
+  --color-primary: #9b79a8; /* lighter plum */
+  --color-accent: #66e188; /* lighter green */
+}
+
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: minmax(64px, var(--left-menu-offset)) var(--peek-width) minmax(0, 1fr);
+  width: 100%;
+  height: 100vh; /* lock layout to viewport height */
+  overflow: hidden; /* prevent document scroll */
+  box-sizing: border-box;
+  /* animate column changes so the main slot and left menu feel connected */
+  transition: grid-template-columns 300ms ease-in-out;
+}
+
+main {
+  grid-column: 3;
+  box-sizing: border-box;
+  min-width: 0;
+  position: relative;
+  z-index: 10;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 640px) {
+  .app-grid {
+    grid-template-columns: minmax(64px, var(--left-menu-offset)) 0px minmax(0, 1fr);
+  }
+  main {
+    grid-column: 3;
+  }
+}
+
+/* Body-level typography and base theme; prefer Tailwind utilities but set fallbacks here */
+body {
+  font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', 'Helvetica Neue', monospace;
+  background-color: var(--color-bg, #ffffff);
+  color: var(--color-text, #111827); /* gray-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility: clamp text to two lines with ellipsis */
+.two-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+
+const title = ".hands — Minga.base";
+---
+
+<BaseLayout title={title}>
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-3xl font-bold">.hands</h1>
+  <p class="mt-4" style="color:var(--color-text)">This is a placeholder page for hands</p>
+
+      <div class="mt-8 border rounded p-6 bg-gray-50">
+  <p class="text-sm" style="color:var(--color-muted)">Hangouts, informal notes, or other ephemeral content here.</p>
+      </div>
+      <div class="mt-6">
+        <button class="px-3 py-2 bg-gray-800 text-white rounded" onclick="import('../stores/ui.js').then(({ openPeek }) => openPeek('hands'))">Open hands in Peek</button>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
