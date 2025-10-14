@@ -1,5 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
+  import { fly } from 'svelte/transition';
   import { get } from "svelte/store";
   import { leftMenuOffset, peekStack } from "../stores/ui.js";
   import theme, { toggleTheme } from '../stores/theme.js';
@@ -14,7 +15,7 @@
   let expanded = false;
   // whether any peek panel is open; when true, keep the left menu expanded
   let peekOpen = false;
-  // decide if a key shows the Minga prefix
+  // decide if a key shows the Minga prefix (keyboard focus or route match only)
   function showMingaFor(key) {
     // map visual keys to routes
     const routeMap = {
@@ -24,9 +25,8 @@
       hands: "/hands",
     };
 
-    // focused by keyboard, hovered by mouse, or route match
-    const isFocused = focusedKey === key;
-    const isHovered = hoveredKey === key;
+  // focused by keyboard or route match (hover no longer triggers the Minga prefix)
+  const isFocused = focusedKey === key;
     let routeMatch = false;
     if (typeof window !== "undefined") {
       try {
@@ -36,6 +36,23 @@
       }
     }
 
+    return isFocused || routeMatch;
+  }
+
+  // visual focus (used for styling) should include hovered items and keyboard focus
+  function isVisuallyFocused(key) {
+    const isFocused = focusedKey === key;
+    const isHovered = hoveredKey === key;
+    // route match should also count as visual focus for the active page
+    let routeMatch = false;
+    if (typeof window !== "undefined") {
+      try {
+        const routeMap = { base: '/', works: '/works', projects: '/projects', hands: '/hands' };
+        routeMatch = window.location.pathname === routeMap[key];
+      } catch (e) {
+        routeMatch = false;
+      }
+    }
     return isFocused || isHovered || routeMatch;
   }
 
@@ -106,11 +123,14 @@
 
   // canonical visible labels used across the menu; used by the hidden
   // measurement element to compute the widest required menu width.
+  // Menu items no longer change to the 'Minga.*' prefix — that pattern is
+  // reserved exclusively for the PeekPanel title. Keep measurement labels in
+  // the short form to match the visible text.
   const MENU_LABELS = [
-    'Minga.base',
-    'Minga.works',
-    'Minga.projects',
-    'Minga.hands'
+    '.base',
+    '.works',
+    '.projects',
+    '.hands'
   ];
 
   // measure on mount and on resize
@@ -175,6 +195,7 @@
 <div class="left-menu" style="grid-column: 1 / 2;">
   <div
     class="menu-inner transition-all duration-300 ease-in-out shadow-lg pointer-events-auto flex flex-col min-w-0 box-border"
+    class:expanded={expanded}
     bind:this={menuEl}
     role="navigation"
     aria-label="Left menu"
@@ -234,13 +255,11 @@
               alt=""
               class="inline-block w-6 h-6 mr-2 align-middle menu-icon"
               aria-hidden="true"
-              class:active={showMingaFor('base')}
+              class:active={isVisuallyFocused('base')}
             />
-            {#if expanded}
-              <span class="menu-label" class:focused={showMingaFor('base')} class:faded={!showMingaFor('base')}>
-                {#if showMingaFor("base")}.base{:else}.base{/if}
-              </span>
-            {/if}
+            <span class="menu-label" class:focused={isVisuallyFocused('base')} class:faded={!isVisuallyFocused('base')} aria-hidden={!expanded}>
+              .base
+            </span>
           </a>
         </li>
 
@@ -272,13 +291,11 @@
               alt=""
               class="inline-block w-6 h-6 mr-2 align-middle menu-icon"
               aria-hidden="true"
-              class:active={showMingaFor('works')}
+              class:active={isVisuallyFocused('works')}
             />
-            {#if expanded}
-              <span class="menu-label" class:focused={showMingaFor('works')} class:faded={!showMingaFor('works')}>
-                {#if showMingaFor("works")}Minga.works{:else}.works{/if}
-              </span>
-            {/if}
+            <span class="menu-label" class:focused={isVisuallyFocused('works')} class:faded={!isVisuallyFocused('works')} aria-hidden={!expanded}>
+              .works
+            </span>
           </button>
         </li>
 
@@ -307,13 +324,11 @@
               alt=""
               class="inline-block w-6 h-6 mr-2 align-middle menu-icon"
               aria-hidden="true"
-              class:active={showMingaFor('projects')}
+              class:active={isVisuallyFocused('projects')}
             />
-            {#if expanded}
-              <span class="menu-label" class:focused={showMingaFor('projects')} class:faded={!showMingaFor('projects')}>
-                {#if showMingaFor("projects")}Minga.projects{:else}.projects{/if}
-              </span>
-            {/if}
+            <span class="menu-label" class:focused={isVisuallyFocused('projects')} class:faded={!isVisuallyFocused('projects')} aria-hidden={!expanded}>
+              .projects
+            </span>
           </button>
         </li>
 
@@ -342,22 +357,24 @@
               alt=""
               class="inline-block w-6 h-6 mr-2 align-middle menu-icon"
               aria-hidden="true"
-              class:active={showMingaFor('hands')}
+              class:active={isVisuallyFocused('hands')}
             />
-            {#if expanded}
-              <span class="menu-label" class:focused={showMingaFor('hands')} class:faded={!showMingaFor('hands')}>
-                {#if showMingaFor("hands")}Minga.hands{:else}.hands{/if}
-              </span>
-            {/if}
+            <span class="menu-label" class:focused={isVisuallyFocused('hands')} class:faded={!isVisuallyFocused('hands')} aria-hidden={!expanded}>
+              .hands
+            </span>
           </button>
         </li>
       </ul>
 
       <!-- left menu no longer renders the services submenu; all content is shown in the PeekPanel stack -->
     </nav>
-      <!-- Theme toggle -->
-  <div class="p-3" style="background-color:var(--color-surface); border-color:transparent">
-        <div class="flex items-center justify-between">
+    {#if expanded}
+      <!-- Theme toggle (only visible when menu is expanded) -->
+      <div class="p-3" style="background-color:var(--color-surface); border-color:transparent">
+        <!-- align the toggle to the right side of the expanded menu -->
+            <div class="flex items-center justify-end" style="width:100%; padding-right:6px;">
+              <!-- animate entrance from the right with a small fade/slide -->
+              <div in:fly={{ x: 8, duration: 220 }} out:fly={{ x: 8, duration: 180 }}>
           <button
             class="relative inline-flex items-center h-7 w-14 rounded-full transition-colors focus:outline-none"
             on:click={() => toggleTheme()}
@@ -379,9 +396,11 @@
                 <img src="/icons/sun.svg" alt="Light" class="w-4 h-4 m-1 menu-icon toggle-icon" aria-hidden="true" />
               {/if}
             </span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
+    {/if}
   </div>
 </div>
 
@@ -391,6 +410,31 @@
     width: auto;
     z-index: 20; /* keep left menu beneath peek (30) and above main (10) */
     grid-column: 1;
+  }
+
+  /* menu label transition: keep labels in the DOM to avoid mounting flashes,
+     but animate opacity and translate when the menu expands/collapses. */
+  .menu-label {
+    display: inline-block;
+    transform-origin: left center;
+    transition: opacity 180ms ease, transform 220ms cubic-bezier(.2,.9,.2,1);
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+    white-space: nowrap;
+  }
+
+  /* hidden state: visually collapse but keep in DOM */
+  .menu-inner:not(.expanded) .menu-label {
+    opacity: 0;
+    transform: translateX(-6px) scaleX(.98);
+    pointer-events: none;
+  }
+
+  /* when expanded, ensure labels are visible */
+  .menu-inner.expanded .menu-label {
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+    pointer-events: auto;
   }
   /* animate width explicitly for smoother transitions */
   .menu-inner {
