@@ -4,20 +4,16 @@ const KEY = 'minga:theme';
 
 function getInitial() {
   if (typeof window === 'undefined') return 'light';
-  // 1) try saved preference
   try {
     const saved = window.localStorage.getItem(KEY);
     if (saved === 'light' || saved === 'dark') return saved;
-  } catch (e) {
-    // ignore
-  }
+  } catch (e) { }
 
-  // 2) fallback to prefers-color-scheme
   try {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-  } catch (e) {}
+  } catch (e) { }
 
   return 'light';
 }
@@ -37,7 +33,7 @@ export const theme = writable(initial);
 theme.subscribe((t) => {
   try {
     window.localStorage.setItem(KEY, t);
-  } catch (e) {}
+  } catch (e) { }
   applyTheme(t);
 });
 

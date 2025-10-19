@@ -1,4 +1,4 @@
-// Static service list and lookup helper
+// Rarely updated store, kept simple
 export const services = [
   { id: 'tools', title: 'Digital Tools & Automation', body: 'We build custom tools to automate tasks and improve workflows for small teams.' },
   { id: 'branding', title: 'Branding & Web Presence', body: 'We design clean, identity-driven visuals and websites that tell your story simply.' },

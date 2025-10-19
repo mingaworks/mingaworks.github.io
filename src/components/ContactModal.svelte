@@ -6,6 +6,8 @@
   let open = false;
   const unsubscribe = contactOpen.subscribe((v) => (open = v));
 
+  // Backdrop and Escape handling intentionally simple to avoid
+  // coupling with focus-trap libraries; this keeps the modal lightweight.
   function onBackdropClick(e) {
     if (e.target === e.currentTarget) closeContact();
   }
@@ -50,14 +52,12 @@
         out:scale={{ start: 0.92, duration: 180 }}
       >
         <div in:fade={{ duration: 200 }}>
-          <!-- Visible close button -->
           <button
             type="button"
             class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
             aria-label="Close contact form"
             on:click={closeContact}
           >
-            <!-- simple cross -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4"

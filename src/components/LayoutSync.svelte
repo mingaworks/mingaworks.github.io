@@ -1,22 +1,22 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { peekWidth, leftMenuOffset } from '../stores/ui.js';
+  import { onMount, onDestroy } from "svelte";
+  import { peekWidth, leftMenuOffset } from "../stores/ui.js";
 
   let unsubPeek = null;
   let unsubLeft = null;
 
   function applyVars(peek, left) {
     try {
-      if (typeof document === 'undefined') return;
+      if (typeof document === "undefined") return;
       const root = document.documentElement;
-      if (typeof peek === 'number') {
-        root.style.setProperty('--peek-width', `${peek}px`);
+      if (typeof peek === "number") {
+        root.style.setProperty("--peek-width", `${peek}px`);
       }
-      if (typeof left === 'number') {
-        root.style.setProperty('--left-menu-offset', `${left}px`);
+      if (typeof left === "number") {
+        root.style.setProperty("--left-menu-offset", `${left}px`);
       }
     } catch (e) {
-      // noop in SSR
+      // SSR: gracefully skip DOM updates
     }
   }
 
@@ -27,7 +27,7 @@
     unsubLeft = leftMenuOffset.subscribe((v) => {
       applyVars(undefined, v);
     });
-    // initial apply
+    // Apply CSS vars immediately so initial paint matches store
     let p, l;
     const upPeek = (v) => (p = v);
     const upLeft = (v) => (l = v);
@@ -43,8 +43,6 @@
     if (unsubLeft) unsubLeft();
   });
 </script>
-
-<!-- This component only runs on the client and syncs layout stores to CSS variables -->
 
 <style>
   /* no visual output */
