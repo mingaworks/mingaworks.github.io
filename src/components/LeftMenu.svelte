@@ -448,8 +448,14 @@
        during transitions so text doesn't get clipped by the inner wrapper. */
     overflow: visible;
     z-index: 20; /* keep left menu beneath peek (30) and above main (10) */
-    /* ensure any border is invisible so the left menu has no visible border */
-    border-right: 0 none transparent;
+   /* use the shared semantic border token so both light and dark themes
+     render the separator consistently. Also ensure the menu surface is
+     explicitly set so the border contrasts against it in both themes. */
+   background-color: var(--color-surface);
+   border-right: 1px solid var(--color-border);
+   /* subtle dual inset shadow to make the separator perceptible on both
+     light and dark backgrounds (dark tint + light tint) */
+   box-shadow: inset -1px 0 0 0 rgba(0,0,0,0.06), inset -1px 0 0 0 rgba(255,255,255,0.04);
   }
   /* allow nav text to wrap so long item labels can fit instead of being cropped */
   .left-menu nav a,
