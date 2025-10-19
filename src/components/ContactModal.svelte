@@ -54,7 +54,7 @@
         <div in:fade={{ duration: 200 }}>
           <button
             type="button"
-            class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
+            class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full transform transition-transform duration-150 ease-out hover:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             aria-label="Close contact form"
             on:click={closeContact}
           >

@@ -3,6 +3,7 @@
   import { fly } from 'svelte/transition';
   import { get } from "svelte/store";
   import { leftMenuOffset, peekStack } from "../stores/ui.js";
+  import { contactOpen } from '../stores/contactModal.js';
   import theme, { toggleTheme } from '../stores/theme.js';
 
   let menuEl;
@@ -181,8 +182,28 @@
     }
   });
 
+  // if the contact modal opens, collapse/unfocus the left menu so it doesn't
+  // visually compete with the modal. This also removes keyboard focus from
+  // the menu to ensure modal receives focus.
+  const unsubContact = contactOpen.subscribe((open) => {
+    if (!open) return;
+    try {
+      expanded = false;
+      hoveredKey = null;
+      focusedKey = null;
+      measureAndSetOffset(false);
+      if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+        // blur any focused element to avoid keeping the menu visually expanded
+        document.activeElement.blur();
+      }
+    } catch (e) {
+      // ignore SSR
+    }
+  });
+
   onDestroy(() => {
     try { unsubPeek(); } catch (e) {}
+    try { unsubContact(); } catch (e) {}
   });
 
   function handleSelect(service) {

@@ -1,6 +1,7 @@
 <script>
   import { peekStack, peekPop, closePeek, peekWidth } from "../stores/ui.js";
   import { fly, fade } from "svelte/transition";
+  import { contactOpen } from '../stores/contactModal.js';
   import { derived } from "svelte/store";
   import { onDestroy, afterUpdate } from "svelte";
 
@@ -56,6 +57,15 @@
     }
   });
 
+  // defensive: if contact modal opens, ensure the peek stack is cleared so
+  // the modal remains visible and focused above other UI.
+  const unsubContact = contactOpen.subscribe((open) => {
+    if (!open) return;
+    try {
+      closePeek();
+    } catch (e) {}
+  });
+
   function handleBack() {
     // pop last page; if stack becomes empty, close peek
     peekPop();
@@ -68,6 +78,7 @@
   onDestroy(() => {
     unsub();
     unsubWidth();
+    try { unsubContact(); } catch (e) {}
   });
 </script>
 
