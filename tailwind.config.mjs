@@ -8,7 +8,7 @@ module.exports = {
         accent: 'var(--color-accent)'
       },
       fontFamily: {
-        sans: ["'Source Code Pro'", 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
+        sans: ['Syne', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
         serif: ['Georgia', 'Cambria', "'Times New Roman'", 'Times', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Roboto Mono', 'Segoe UI Mono', 'Helvetica Neue', 'monospace']
       }

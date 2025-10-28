@@ -1,4 +1,6 @@
-@import "@fontsource/source-code-pro/index.css";
+/* Import common Syne weights explicitly so available weights are bundled */
+@import "@fontsource/syne/400.css";
+@import "@fontsource/syne/700.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -108,7 +110,7 @@ main {
 
 /* Body-level typography and base theme; prefer Tailwind utilities but set fallbacks here */
 body {
-  font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', 'Helvetica Neue', monospace;
+  font-family: 'Syne', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--color-bg, #ffffff);
   color: var(--color-text, #111827);
   /* gray-900 */

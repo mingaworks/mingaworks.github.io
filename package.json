@@ -10,7 +10,7 @@
     "dependencies": {
         "@astrojs/svelte": "^7.2.0",
         "@astrojs/tailwind": "^6.0.2",
-        "@fontsource/source-code-pro": "^4.5.14",
+        "@fontsource/syne": "^5.2.7",
         "astro": "^5.14.3",
         "svelte": "^5.39.11"
     },
