@@ -21,8 +21,6 @@ jobs:
         uses: withastro/action@v3
         with:
           node-version: '22'
-        # env:
-        #   GSHEETS_KEY: "TEMPTEMPTEMP"
 
   deploy:
     runs-on: ubuntu-latest

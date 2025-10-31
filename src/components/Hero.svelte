@@ -7,6 +7,6 @@
     class="mt-8 px-6 py-3 text-primary font-medium rounded-xl shadow transition cursor-pointer inline-block"
     style="background-color:var(--color-surface); color:var(--color-text)"
   >
-    Join Waitlist
+    Contact
   </button>
 </div>
