@@ -1,0 +1,124 @@
+{
+  "id": "root",
+  "base": {
+    "id": "base",
+    "title": "Minga Hub",
+    "intro": [
+      "Mingaworks is an digital studio working at the intersection of ecology, design, and technology.",
+      "We replace messy, fragile systems with resilient digital tools that bridge the gap between complex technology and practical, human-scale impact."
+    ],
+    "values": [
+      {
+        "title": "Radical Pragmatism",
+        "desc": "We choose the simplest tool that solves the problem. No over-engineering; just robust, maintainable solutions."
+      },
+      {
+        "title": "Holistic Ownership",
+        "desc": "We don't just ship features; we understand product reality. We build systems we are proud to stand behind."
+      },
+      {
+        "title": "Open Sovereignty",
+        "desc": "Data belongs to the community. We favor open-source, decentralized, and transparent architectures."
+      }
+    ],
+    "vision": "A world where local communities and nomadic builders are empowered by sovereign digital tools, moving away from extractive platforms toward collaborative, self-hosted ecosystems.",
+    "team": [
+      {
+        "name": "Mali Bulut",
+        "role": "Lead Engineer",
+        "bio": "Engineer and product builder turning ambiguous problems into testable solutions. Admires simplicity; builds for longevity.",
+        "avatar": "/images/mali-logo.jpeg"
+        
+      },
+      {
+        "name": "Gamze Kurt",
+        "role": "Design Strategist",
+        "bio": "Designer and strategist focused on visual clarity and systemic coherence. Leads design direction, storytelling, and user experience.",
+        "avatar": "/images/gamze-logo.jpeg"
+      }
+    ],
+    "collaborate": {
+      "title": "Work with us",
+      "text": "We offer fractional CTO/Design services, MVP development, and digital transformation for small-to-medium impact projects.",
+      "cta": {
+        "label": "Start a collaboration",
+        "href": "https://github.com/mingaworks"
+      }
+    }
+  },
+  "branches": [
+    {
+      "id": "works",
+      "label": ".works",
+      "content": "Professional services for businesses ready to scale their digital maturity.",
+      "children": [
+        {
+          "id": "ops-automation",
+          "label": "Systems & Automation",
+          "content": "Transitioning from messy 'Sheet-ops' to custom internal tools, automated workflows, and secure data governance."
+        },
+        {
+          "id": "mvp-lab",
+          "label": "MVP Development",
+          "content": "Rapid prototyping for founders. Turning an idea into a fundable, maintainable platform using lean, full-stack architectures."
+        },
+        {
+          "id": "fractional-leadership",
+          "label": "Fractional CTO & UX",
+          "content": "Strategic guidance for startups needing senior-level technical and design ownership without the full-time overhead."
+        }
+      ]
+    },
+    {
+      "id": "initiative",
+      "label": ".initiative",
+      "content": "Our non-profit branch: Building the socio-digital commons.",
+      "children": [
+        {
+          "id": "open-infra",
+          "label": "Community Infrastructure",
+          "content": "Developing decentralized protocols for ecovillages and nomadic hubs to manage resources and identities."
+        },
+        {
+          "id": "digital-literacy",
+          "label": "Open Education",
+          "content": "Providing tools and workshops for regenerative projects to gain digital sovereignty."
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "label": ".projects",
+      "content": "Evidence of our impact and technical craft.",
+      "children": [
+        {
+          "id": "language-homeschool",
+          "label": "Language Homeschool",
+          "summary": "From Google Sheets to a custom Admin Engine.",
+          "children": [
+            {
+              "id": "problem",
+              "label": "The Mess",
+              "content": "Fragmented data, security risks, and 10+ hours/week of manual admin work."
+            },
+            {
+              "id": "solution",
+              "label": "The Tool",
+              "content": "Built a custom web app with role-based access, automated scheduling, and centralized student records."
+            },
+            {
+              "id": "impact",
+              "label": "The Result",
+              "content": "Eliminated 80% of manual admin tasks and secured business-critical IP."
+            }
+          ]
+        },
+        {
+          "id": "archive",
+          "label": "Previous Explorations",
+          "content": "A look at our past work in Web3, MLOps, and Brand Identity."
+        }
+      ]
+    }
+  ]
+}

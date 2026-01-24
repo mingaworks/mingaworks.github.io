@@ -1,0 +1,96 @@
+:root {
+  font-family: 'Syne', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Brand palette */
+  --brand-primary: #0014A8;
+  --brand-primary-rgb: 0, 20, 168;
+  --brand-secondary: #6082B6;
+  --brand-secondary-rgb: 96, 130, 182;
+  --brand-bg: #FDF2EC;
+  --brand-accent: #7A1C27;
+  --brand-accent-rgb: 122, 28, 39;
+
+  /* Derived tokens */
+  --bg: var(--brand-bg);
+  --text: var(--brand-primary);
+  --muted: var(--brand-secondary);
+  --primary: var(--brand-primary);
+  --primary-contrast: var(--brand-bg);
+
+  --menu-bg: var(--brand-bg);
+  --menu-text: var(--brand-primary);
+  --menu-width-collapsed: 64px;
+  --menu-width-expanded: 220px;
+
+  --panel-bg: var(--brand-bg);
+  --panel-text: var(--brand-primary);
+
+  --button-bg: var(--brand-primary);
+  --button-text: var(--brand-bg);
+
+  --color-primary: var(--primary);
+  --color-text: var(--text);
+  --color-surface: var(--panel-bg);
+  --color-muted: var(--muted);
+
+  --primary-glow: rgba(var(--brand-primary-rgb), 0.7);
+  --accent-glow: rgba(var(--brand-secondary-rgb), 0.5);
+  --toggle-bg-start: rgba(var(--brand-bg-rgb, 253, 242, 236), 0.06);
+  --toggle-bg-end: rgba(var(--brand-primary-rgb), 0.06);
+  --toggle-border: rgba(var(--brand-primary-rgb), 0.12);
+  --panel-border: rgba(var(--brand-primary-rgb), 0.06);
+  --menu-icon-filter: none;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--muted);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100vw;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: rgba(var(--brand-primary-rgb), 0.6);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

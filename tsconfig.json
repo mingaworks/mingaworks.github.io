@@ -1,6 +1,7 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-        "jsx": "preserve"
-    }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
