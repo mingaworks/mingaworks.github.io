@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 
 function getScriptId() {
     const devId = import.meta.env.VITE_CONTACTS_SCRIPT_ID as string | undefined
@@ -7,21 +8,17 @@ function getScriptId() {
     return prodId || devId
 }
 
-export default function ContactForm({ onClose, onDirtyChange }: { onClose?: () => void; onDirtyChange?: (d: boolean) => void }) {
+export default function ContactUs({ breadcrumbs, onDirtyChange }: { breadcrumbs?: ReactNode; onDirtyChange?: (d: boolean) => void }) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [notes, setNotes] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const [success, setSuccess] = useState(false)
+    const [showToast, setShowToast] = useState(false)
 
     useEffect(() => {
-        // reset when unmounted
-        return () => {
-            setSubmitting(false)
-            onDirtyChange?.(false)
-        }
+        return () => onDirtyChange?.(false)
     }, [onDirtyChange])
 
     useEffect(() => {
@@ -32,16 +29,17 @@ export default function ContactForm({ onClose, onDirtyChange }: { onClose?: () =
     async function handleSubmit(e?: React.FormEvent) {
         e?.preventDefault()
         setError(null)
-        setSuccess(false)
+
         if (!name.trim() || !email.trim() || !notes.trim()) {
             setError('Please fill required fields (Name, Email, Note).')
             return
         }
         const id = getScriptId()
         if (!id) {
-            setError('Contacts script ID not configured.');
+            setError('Contacts script ID not configured.')
             return
         }
+
         const url = `https://script.google.com/macros/s/${id}/exec`
         setSubmitting(true)
         try {
@@ -52,12 +50,14 @@ export default function ContactForm({ onClose, onDirtyChange }: { onClose?: () =
                 body: JSON.stringify(payload),
             })
             if (!res.ok) throw new Error(`Status ${res.status}`)
-            setSuccess(true)
-            setTimeout(() => {
-                setSubmitting(false)
-                onDirtyChange?.(false)
-                onClose?.()
-            }, 900)
+            setName('')
+            setEmail('')
+            setPhone('')
+            setNotes('')
+            onDirtyChange?.(false)
+            setSubmitting(false)
+            setShowToast(true)
+            setTimeout(() => setShowToast(false), 3500)
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : String(err)
             setError(msg || 'Submit failed')
@@ -66,11 +66,13 @@ export default function ContactForm({ onClose, onDirtyChange }: { onClose?: () =
     }
 
     return (
-        <div className="cm-dialog">
-            <header className="cm-header">
-                <h2>Contact</h2>
-                <button className="cm-close" onClick={() => onClose?.()} aria-label="Close">✕</button>
-            </header>
+        <div className="inner-page contact-page">
+            {breadcrumbs}
+            <h2>Get in Touch</h2>
+
+            <p>
+                We work with small teams and coordination-based organizations that need clarity, not more tools. If you’re interested in our services, have a specific challenge in mind, or want to explore a collaboration, let’s talk.
+            </p>
 
             <form className="cm-form" onSubmit={handleSubmit}>
                 <label>
@@ -89,18 +91,30 @@ export default function ContactForm({ onClose, onDirtyChange }: { onClose?: () =
                 </label>
 
                 <label>
-                    Note *
+                    Message *
                     <textarea value={notes} onChange={(e) => setNotes(e.target.value)} required />
                 </label>
 
                 <div className="cm-actions">
-                    <button type="button" className="cm-secondary" onClick={() => onClose?.()} disabled={submitting}>Cancel</button>
-                    <button type="submit" className="cm-primary" disabled={submitting}>{submitting ? 'Sending...' : 'Send'}</button>
+                    <button type="submit" className="cm-primary" disabled={submitting}>{submitting ? 'Sending...' : 'Contact Us'}</button>
                 </div>
 
                 {error && <div className="cm-error">{error}</div>}
-                {success && <div className="cm-success">Message sent — thank you.</div>}
+                {showToast && (
+                    <div className="toast toast-success" role="status" aria-live="polite">
+                        Message sent, thank you.
+                    </div>
+                )}
             </form>
+
+            <p style={{ marginTop: '3rem' }}>
+                You can contact us if you want to:
+            </p>
+            <ul style={{ marginTop: '0.5rem' }}>
+                <li>Get support with digital tools, systems, or workflows</li>
+                <li>Discuss branding, product, or service design</li>
+                <li>Explore long-term or research-based collaborations</li>
+            </ul>
         </div>
     )
 }
