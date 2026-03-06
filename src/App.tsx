@@ -1,8 +1,8 @@
-import './App.css'
-import TwoPaneLayout from './components/TwoPaneLayout'
+import "./App.css";
+import TwoPaneLayout from "./components/TwoPaneLayout";
 
 function App() {
-  return <TwoPaneLayout />
+  return <TwoPaneLayout />;
 }
 
-export default App
+export default App;

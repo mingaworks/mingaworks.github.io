@@ -28,7 +28,6 @@
         "role": "Lead Engineer",
         "bio": "Engineer and product builder turning ambiguous problems into testable solutions. Admires simplicity; builds for longevity.",
         "avatar": "/images/mali-logo.jpeg"
-        
       },
       {
         "name": "Gamze Kurt",
@@ -54,18 +53,23 @@
       "children": [
         {
           "id": "ops-automation",
-          "label": "Systems & Automation",
-          "content": "Transitioning from messy 'Sheet-ops' to custom internal tools, automated workflows, and secure data governance."
+          "label": "Operational Architecture",
+          "content": "Designing internal systems that replace scattered spreadsheets, chats, and manual coordination with calm, reliable workflows."
         },
         {
-          "id": "mvp-lab",
-          "label": "MVP Development",
-          "content": "Rapid prototyping for founders. Turning an idea into a fundable, maintainable platform using lean, full-stack architectures."
+          "id": "product-archt",
+          "label": "Product Architecture & Launch",
+          "content": "Taking ideas from prototype to production with clear roadmaps, durable architecture, and human-centered interfaces."
         },
         {
-          "id": "fractional-leadership",
-          "label": "Fractional CTO & UX",
-          "content": "Strategic guidance for startups needing senior-level technical and design ownership without the full-time overhead."
+          "id": "visual-identity",
+          "label": "Visual Identity & UX Design",
+          "content": "Building coherent brand systems and web experiences that communicate credibility and make your work easy to discover."
+        },
+        {
+          "id": "system-advisory",
+          "label": "Strategic Systems Advisory",
+          "content": "Supporting collaborative initiatives with tools, playbooks, and platforms that strengthen participation and trust."
         }
       ]
     },

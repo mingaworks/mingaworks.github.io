@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Syne', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Syne", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -8,10 +8,10 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Brand palette */
-  --color-primary: #0014A8;
-  --color-secondary: #6082B6;
-  --color-accent: #7A1C27;
-  --color-neutral: #FDF2EC;
+  --color-primary: #0014a8;
+  --color-secondary: #6082b6;
+  --color-accent: #7a1c27;
+  --color-neutral: #fdf2ec;
 
   --color-primary-rgb: 0, 20, 168;
   --color-secondary-rgb: 96, 130, 182;
@@ -31,13 +31,51 @@
 
   --button-primary-bg: var(--color-primary);
   --button-primary-text: var(--color-neutral);
-  --button-primary-hover: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  --button-primary-disabled: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.3), rgba(var(--color-secondary-rgb), 0.3));
+  --button-primary-hover: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  --button-primary-disabled: linear-gradient(
+    135deg,
+    rgba(var(--color-primary-rgb), 0.3),
+    rgba(var(--color-secondary-rgb), 0.3)
+  );
 
   --button-inverted-stroke: var(--color-neutral);
   --button-inverted-text: var(--color-primary);
-  --button-inverted-hover: linear-gradient(135deg, var(--color-neutral), var(--color-secondary));
-  --button-inverted-disabled: linear-gradient(135deg, rgba(var(--color-neutral-rgb), 0.3), rgba(var(--color-secondary-rgb), 0.3));
+  --button-inverted-hover: linear-gradient(
+    135deg,
+    var(--color-neutral),
+    var(--color-secondary)
+  );
+  --button-inverted-disabled: linear-gradient(
+    135deg,
+    rgba(var(--color-neutral-rgb), 0.3),
+    rgba(var(--color-secondary-rgb), 0.3)
+  );
+
+  /* Layout + spacing */
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Motion */
+  --motion-fast: 180ms ease;
+  --motion-medium: 220ms ease;
+  --motion-slow: 320ms ease;
+
+  /* Surfaces */
+  --surface-page: #ffffff;
+  --surface-gradient-accent: #488c85;
 }
 
 a {
@@ -60,7 +98,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--text-primary);
-  background-color: #FFFFFF;
+  background-color: var(--surface-page);
 }
 
 h1 {
@@ -68,18 +106,23 @@ h1 {
 }
 
 button {
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  /* padding: 0.6em 1.2em; */
+  justify-content: center;
+  font-size: 1.2rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--button-primary-bg);
+  background: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
 button:hover {
   border-color: rgba(var(--color-primary-rgb), 0.6);
+  background-color: #ffffff;
+  color: var(--color-primary);
 }
 
 button:focus,
