@@ -56,6 +56,7 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // let native horizontal scroll through
+      if (el.scrollWidth <= el.clientWidth) return; // no horizontal overflow → let event bubble to parent
       e.preventDefault();
       el.scrollLeft += e.deltaY;
     };
@@ -115,17 +116,17 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
               <div className="service-card-content">
                 <h2 className="service-card-title">{service.title}</h2>
                 <p className="service-card-desc">{service.description}</p>
+                <button
+                  type="button"
+                  className="service-card-link"
+                  onClick={() => {
+                    if (!hasDragged.current) onSelect(service.id);
+                  }}
+                  aria-label={`View details for ${service.title}`}
+                >
+                  View details
+                </button>
               </div>
-              <button
-                type="button"
-                className="service-card-link"
-                onClick={() => {
-                  if (!hasDragged.current) onSelect(service.id);
-                }}
-                aria-label={`View details for ${service.title}`}
-              >
-                View details
-              </button>
             </article>
           ))}
         </div>

@@ -104,6 +104,18 @@ function deriveBasePath(pathname: string): string {
   const normalized = normalizePath(pathname);
   const segments = normalized.split("/").filter(Boolean);
   if (segments.length === 0) return "";
+  // 2-segment detail URLs like /works/ops-automation or /projects/admin-scheduling-system
+  if (segments.length >= 2) {
+    const maybeSub = segments[segments.length - 1];
+    const maybeTop = segments[segments.length - 2];
+    if (
+      TOP_LEVEL_ROUTES.has(maybeTop) &&
+      (WORKS_DETAIL_IDS.has(maybeSub) || PROJECT_DETAIL_IDS.has(maybeSub))
+    ) {
+      const prefix = segments.slice(0, -2).join("/");
+      return prefix ? `/${prefix}` : "";
+    }
+  }
   const last = segments[segments.length - 1];
   if (TOP_LEVEL_ROUTES.has(last)) {
     const prefix = segments.slice(0, -1).join("/");
@@ -112,10 +124,11 @@ function deriveBasePath(pathname: string): string {
   return `/${segments.join("/")}`;
 }
 
-function routeFromPath(pathname: string, basePath: string): string {
+/** Returns the full breadcrumb array that matches the current URL. */
+function breadcrumbFromPath(pathname: string, basePath: string): string[] {
   const normalized = normalizePath(pathname);
   if (normalized === basePath || (normalized === "/" && basePath === ""))
-    return "base";
+    return ["base"];
 
   let suffix = "";
   if (basePath && normalized.startsWith(`${basePath}/`)) {
@@ -124,24 +137,41 @@ function routeFromPath(pathname: string, basePath: string): string {
     suffix = normalized.replace(/^\//, "");
   }
 
-  const route = suffix.split("/").filter(Boolean)[0];
-  return route && TOP_LEVEL_ROUTES.has(route) ? route : "base";
+  const segments = suffix.split("/").filter(Boolean);
+  if (segments.length === 0) return ["base"];
+  const [first, second] = segments;
+  if (!TOP_LEVEL_ROUTES.has(first)) return ["base"];
+  if (
+    second &&
+    (WORKS_DETAIL_IDS.has(second) || PROJECT_DETAIL_IDS.has(second))
+  ) {
+    return [first, second];
+  }
+  return [first];
 }
 
-function pathForRoute(route: string, basePath: string): string {
-  if (route === "base") return basePath || "/";
-  const prefix = basePath === "" ? "" : basePath;
-  return `${prefix}/${route}`;
+/** Maps the full breadcrumb array to a URL path. */
+function pathFromBreadcrumb(crumbs: string[], basePath: string): string {
+  const base = basePath === "" ? "" : basePath;
+  const [first, second] = crumbs;
+  if (!first || first === "base") return base || "/";
+  if (!TOP_LEVEL_ROUTES.has(first)) return base || "/";
+  if (
+    second &&
+    (WORKS_DETAIL_IDS.has(second) || PROJECT_DETAIL_IDS.has(second))
+  ) {
+    return `${base}/${first}/${second}`;
+  }
+  return `${base}/${first}`;
 }
 
 export default function TwoPaneLayout() {
   const initialBasePath = deriveBasePath(window.location.pathname);
   const basePathRef = useRef<string>(initialBasePath);
   const isApplyingPopStateRef = useRef(false);
-  const [breadcrumb, setBreadcrumb] = useState<string[]>(() => {
-    const route = routeFromPath(window.location.pathname, initialBasePath);
-    return [route];
-  });
+  const [breadcrumb, setBreadcrumb] = useState<string[]>(() =>
+    breadcrumbFromPath(window.location.pathname, initialBasePath),
+  );
   const [sidebarHover, setSidebarHover] = useState(false);
   const sidebarRef = useRef<HTMLElement | null>(null);
   const [contactDirty, setContactDirty] = useState(false);
@@ -151,11 +181,9 @@ export default function TwoPaneLayout() {
   useEffect(() => {
     function onPopState() {
       isApplyingPopStateRef.current = true;
-      const route = routeFromPath(
-        window.location.pathname,
-        basePathRef.current,
+      setBreadcrumb(
+        breadcrumbFromPath(window.location.pathname, basePathRef.current),
       );
-      setBreadcrumb([route]);
       setContactDirty(false);
     }
 
@@ -164,8 +192,7 @@ export default function TwoPaneLayout() {
   }, []);
 
   useEffect(() => {
-    const route = TOP_LEVEL_ROUTES.has(breadcrumb[0]) ? breadcrumb[0] : "base";
-    const targetPath = pathForRoute(route, basePathRef.current);
+    const targetPath = pathFromBreadcrumb(breadcrumb, basePathRef.current);
     const currentPath = normalizePath(window.location.pathname);
     if (targetPath === currentPath) {
       isApplyingPopStateRef.current = false;
@@ -263,6 +290,10 @@ export default function TwoPaneLayout() {
     if (!hasSlotB) return null;
     return breadcrumb[breadcrumb.length - 1];
   }, [breadcrumb, hasSlotB]);
+
+  useEffect(() => {
+    if (slotBRef.current) slotBRef.current.scrollTop = 0;
+  }, [slotBId]);
 
   function getNode(id: string | null) {
     if (!id) return null;
