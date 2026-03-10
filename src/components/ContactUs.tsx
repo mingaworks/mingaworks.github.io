@@ -92,7 +92,7 @@ export default function ContactUs({
             onClick={onClose}
             aria-label="Close contact page"
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>Get in Touch</h2>

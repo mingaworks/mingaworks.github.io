@@ -22,7 +22,7 @@ export default function InitiativeDonate({
             onClick={onClose}
             aria-label="Close donate page"
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>Support collective work</h2>

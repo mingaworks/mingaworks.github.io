@@ -25,7 +25,7 @@ export default function JoinUs({
             onClick={onClose}
             aria-label="Close waitlist page"
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>Join the Minga waitlist</h2>

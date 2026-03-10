@@ -18,7 +18,7 @@ export default function About({
             onClick={onClose}
             aria-label="Close about page"
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>Vision</h2>

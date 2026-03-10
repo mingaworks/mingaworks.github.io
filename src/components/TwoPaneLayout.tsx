@@ -304,10 +304,15 @@ export default function TwoPaneLayout() {
   }
 
   function getLabel(id: string) {
-    if (id === "base") return "home";
-    if (CUSTOM_PAGES[id]) return CUSTOM_PAGES[id].label;
-    const n = getNode(id);
-    return n?.label ?? n?.title ?? id;
+    let raw: string;
+    if (id === "base") raw = "home";
+    else if (CUSTOM_PAGES[id]) raw = CUSTOM_PAGES[id].label;
+    else {
+      const n = getNode(id);
+      raw = n?.label ?? n?.title ?? id;
+    }
+    if (raw.startsWith(".")) return raw;
+    return "." + raw.toLowerCase();
   }
 
   function getBreadcrumbItemsFor(id: string | null) {

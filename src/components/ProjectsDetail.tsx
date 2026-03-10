@@ -19,7 +19,7 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
               onClick={onClose}
               aria-label="Close admin scheduling system case study"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>Admin Scheduling System</h2>
@@ -325,7 +325,7 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
               onClick={onClose}
               aria-label="Close fishnet recycling case study"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>Fishnet Recycling Management System</h2>
@@ -353,7 +353,7 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
             onClick={onClose}
             aria-label="Close project case study"
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>Project Case Study</h2>

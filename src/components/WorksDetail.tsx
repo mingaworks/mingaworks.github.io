@@ -377,7 +377,7 @@ export default function WorksDetail({
               onClick={onClose}
               aria-label="Close operational architecture details"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>{detail.title}</h2>
@@ -504,7 +504,7 @@ export default function WorksDetail({
               onClick={onClose}
               aria-label="Close product architecture and launch details"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>{detail.title}</h2>
@@ -628,7 +628,7 @@ export default function WorksDetail({
               onClick={onClose}
               aria-label="Close visual identity and ux design details"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>{detail.title}</h2>
@@ -791,7 +791,7 @@ export default function WorksDetail({
               onClick={onClose}
               aria-label="Close strategic systems advisory details"
             >
-              ×
+              <img src="/icons/close.svg" alt="" />
             </button>
           </div>
           <h2>{detail.title}</h2>
@@ -944,7 +944,7 @@ export default function WorksDetail({
             onClick={onClose}
             aria-label={`Close ${detail.title} details`}
           >
-            ×
+            <img src="/icons/close.svg" alt="" />
           </button>
         </div>
         <h2>{detail.title}</h2>
