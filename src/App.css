@@ -1,6 +1,31 @@
 .cta {
   padding: 0.6em 1.2em;
   width: clamp(160px, 18vw, 240px);
+  position: relative;
+  border: none;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.05) 5%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .layout-root {
