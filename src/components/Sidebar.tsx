@@ -103,7 +103,7 @@ const Sidebar = forwardRef<HTMLElement, Props>(function Sidebar(
       }}
     >
       <div className="sidebar-brand">
-        <img src="/images/minga-initiative.svg" alt="Minga Initiative" />
+        <img src="/icons/mingaworks-border.svg" alt="Minga Works" />
       </div>
       <nav aria-label="Main menu">
         <ul className="sidebar-menu">
@@ -140,9 +140,12 @@ const Sidebar = forwardRef<HTMLElement, Props>(function Sidebar(
                       aria-label={`${isOpen ? "Collapse" : "Expand"} ${entry.label} menu`}
                       aria-expanded={isOpen}
                     >
-                      <span className="collapse-icon" aria-hidden>
-                        ⌄
-                      </span>
+                      <img
+                        src="/icons/downarrow.svg"
+                        alt=""
+                        className="collapse-icon"
+                        aria-hidden
+                      />
                     </button>
                   ) : null}
                 </div>

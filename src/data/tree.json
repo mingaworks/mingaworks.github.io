@@ -74,23 +74,6 @@
       ]
     },
     {
-      "id": "initiative",
-      "label": ".initiative",
-      "content": "Our non-profit branch: Building the socio-digital commons.",
-      "children": [
-        {
-          "id": "open-infra",
-          "label": "Community Infrastructure",
-          "content": "Developing decentralized protocols for ecovillages and nomadic hubs to manage resources and identities."
-        },
-        {
-          "id": "digital-literacy",
-          "label": "Open Education",
-          "content": "Providing tools and workshops for regenerative projects to gain digital sovereignty."
-        }
-      ]
-    },
-    {
       "id": "projects",
       "label": ".projects",
       "content": "Evidence of our impact and technical craft.",
@@ -121,6 +104,23 @@
           "id": "archive",
           "label": "Previous Explorations",
           "content": "A look at our past work in Web3, MLOps, and Brand Identity."
+        }
+      ]
+    },
+    {
+      "id": "initiative",
+      "label": ".initiative",
+      "content": "Our non-profit branch: Building the socio-digital commons.",
+      "children": [
+        {
+          "id": "open-infra",
+          "label": "Community Infrastructure",
+          "content": "Developing decentralized protocols for ecovillages and nomadic hubs to manage resources and identities."
+        },
+        {
+          "id": "digital-literacy",
+          "label": "Open Education",
+          "content": "Providing tools and workshops for regenerative projects to gain digital sovereignty."
         }
       ]
     }

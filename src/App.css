@@ -38,6 +38,7 @@
     var(--sidebar-expanded-max)
   );
   --sidebar-brand-size: clamp(36px, 8vw, 68px);
+  --sidebar-brand-height: clamp(36px, 8vw, 68px);
   width: var(--sidebar-width, var(--sidebar-collapsed));
   padding: 2vw clamp(6px, 1vw, 8px);
   border-right: 1px solid rgba(var(--color-primary-rgb), 0.06);
@@ -50,6 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: var(--sidebar-brand-height);
+  flex-shrink: 0;
 }
 
 .sidebar-brand img {
@@ -62,7 +65,7 @@
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 0 1em;
 }
 
@@ -91,18 +94,28 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 0 2px;
 }
 
 .collapse-icon {
-  color: var(--text-muted);
-  font-weight: 600;
+  width: 1.2rem;
+  height: 1.2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transform-origin: center;
-  font-size: clamp(18px, 3.8vw, 28px);
-  line-height: 1;
+  opacity: 0;
+  transition:
+    opacity 200ms ease,
+    transform 260ms ease;
+}
+
+.menu-item:hover .collapse-icon {
+  opacity: 1;
+}
+
+.menu-item.open .collapse-icon {
+  opacity: 1;
+  transform: rotate(-90deg);
 }
 
 .sub-menu {
@@ -115,22 +128,19 @@
   gap: 0.4rem;
   list-style: none;
   transform: translateY(-4px);
+  margin: 0 0.5rem;
   transition:
     max-height 260ms ease,
     opacity 260ms ease,
-    transform 260ms ease;
+    transform 260ms ease,
+    margin 260ms ease;
 }
 
 .menu-item.open .sub-menu {
   max-height: 400px;
   opacity: 1;
   transform: translateY(0);
-  margin-top: 0.5rem;
-}
-
-.menu-item.open .collapse-icon {
-  color: var(--text-primary);
-  transform: rotate(180deg);
+  margin: 1rem 0.5rem;
 }
 
 .sidebar.collapsed .collapse-toggle {
@@ -162,6 +172,10 @@
   display: none !important;
 }
 
+.sidebar.collapsed .menu-item.open .collapse-icon {
+  filter: brightness(0.6);
+}
+
 .sidebar button {
   display: flex;
   align-items: center;
@@ -189,9 +203,9 @@
 .submenu-icon {
   display: inline-block;
   vertical-align: middle;
-  height: 1.5rem;
-  width: 1.5rem;
-  min-width: 1.5rem;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
   flex-shrink: 0;
   transition: filter var(--motion-fast);
 }
@@ -201,12 +215,22 @@
   color: var(--text-primary);
 }
 
+.sidebar button.active {
+  color: var(--text-primary);
+}
+
+.sidebar button.active .submenu-icon {
+  filter: brightness(1.5);
+}
+
 .sidebar .menu-label {
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 500;
+  line-height: 160%;
   transition:
     opacity 160ms ease,
     width 160ms ease;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .sub-menu .submenu-label {
@@ -217,7 +241,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
-  font-size: 0.9em;
+  font-size: 0.85em;
   text-overflow: ellipsis;
 }
 
