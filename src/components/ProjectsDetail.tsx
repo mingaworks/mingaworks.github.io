@@ -62,8 +62,8 @@ export default function ProjectsDetail({
 
           <p>
             This project focuses on transforming a spreadsheet-based scheduling
-            process into a reliable, scalable admin system{" "}
-            <u> where decisions are made once </u> and enforced by the system.
+            process into a reliable, scalable admin system where decisions are
+            made once and enforced by the system.
           </p>
 
           <h3>

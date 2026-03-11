@@ -5,6 +5,7 @@ type ProjectCard = {
   title: string;
   description: string;
   iconPath: string;
+  services: string[];
 };
 
 type Props = {
@@ -20,6 +21,7 @@ const PROJECTS: ProjectCard[] = [
     description:
       "A scheduling system redesign focused on reducing cognitive load for administrators working across fragmented tools.",
     iconPath: "/icons/projects/admin-scheduling-system.svg",
+    services: ["Operational Architecture", "Digital Infrastructure"],
   },
   {
     id: "fishnet-recycling",
@@ -27,6 +29,7 @@ const PROJECTS: ProjectCard[] = [
     description:
       "A management system developed to support the collection, tracking, and reuse of discarded fishnets through community collaboration.",
     iconPath: "/icons/projects/fishnet-recycling.svg",
+    services: ["Community Project", "Initiative-driven Project"],
   },
 ];
 
@@ -57,6 +60,13 @@ export default function Projects({ breadcrumbs, onSelect }: Props) {
             <div className="project-card-content">
               <h2>{project.title}</h2>
               <p>{project.description}</p>
+              <div className="project-card-services">
+                {project.services.map((s) => (
+                  <span key={s} className="project-card-service-tag">
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
             <button
               type="button"
