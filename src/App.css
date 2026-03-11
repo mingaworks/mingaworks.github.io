@@ -357,6 +357,28 @@
   --sticky-order: 4;
 }
 
+.home-section {
+  --section-pad-inline: 4rem;
+  padding: 0 3rem;
+  margin-bottom: 1rem;
+}
+
+.home-section p:first-of-type {
+  text-align: justify;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.minga-meaning {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+}
+
 .sticky-page > .page-section {
   --section-pad-inline: 4rem;
   box-sizing: border-box;
@@ -777,7 +799,6 @@
 }
 
 .works-page,
-.about-page,
 .works-detail-page,
 .initiative-donate-page {
   display: flex;
@@ -1477,6 +1498,10 @@
   --page-pad-inline: 0px;
 }
 
+.works-detail-page[page="about"] {
+  font-weight: 500;
+}
+
 .works-detail-content-wrap {
   width: 100%;
   box-sizing: border-box;
@@ -1966,10 +1991,6 @@
   font-size: clamp(2.2rem, 4.2vw, 3.3rem);
 }
 
-.about-page {
-  gap: 32px;
-}
-
 .about-image-wrap {
   position: relative;
   width: calc(100% + (var(--page-pad-inline) * 2));
@@ -2020,6 +2041,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  line-height: 160%;
 }
 
 .about-logos {

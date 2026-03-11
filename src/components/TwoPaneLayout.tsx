@@ -20,7 +20,15 @@ import InitiativeDonate from "./InitiativeDonate";
 import Projects from "./Projects";
 import ProjectsDetail from "./ProjectsDetail";
 
-const TOP_LEVEL_ROUTES = new Set(["base", "works", "initiative", "projects"]);
+const TOP_LEVEL_ROUTES = new Set([
+  "base",
+  "works",
+  "initiative",
+  "projects",
+  "about",
+  "join",
+  "contact",
+]);
 
 const WORKS_DETAIL_IDS = new Set([
   "ops-automation",
@@ -117,6 +125,7 @@ const CUSTOM_PAGES: Record<
 > = {
   about: { label: "About Us", kind: "about" },
   waitlist: { label: "Join Us", kind: "waitlist" },
+  join: { label: "Join Us", kind: "waitlist" },
   contact: { label: "Contact us", kind: "contact" },
   donate: { label: "Donate", kind: "donate" },
 };
@@ -484,9 +493,10 @@ export default function TwoPaneLayout() {
     return "default" as const;
   }
 
-  function openInitiativeDetail(id: "waitlist" | "donate") {
+  function openInitiativeDetail(id: "join" | "donate") {
     attemptNavigate(() => {
-      setBreadcrumb(["initiative", id]);
+      if (id === "join") setBreadcrumb(["initiative", "join"]);
+      else setBreadcrumb(["initiative", id]);
     });
   }
 
@@ -520,7 +530,7 @@ export default function TwoPaneLayout() {
 
   function handleCloseSlotB() {
     attemptNavigate(() => {
-      setBreadcrumb((b) => (b.length > 1 ? b.slice(0, -1) : b));
+      setBreadcrumb((b) => (b.length > 1 ? b.slice(0, -1) : ["base"]));
     });
   }
 
@@ -589,7 +599,7 @@ export default function TwoPaneLayout() {
                   type="button"
                   className="cta"
                   onClick={() =>
-                    attemptNavigate(() => setBreadcrumb(["base", "waitlist"]))
+                    attemptNavigate(() => setBreadcrumb(["base", "join"]))
                   }
                 >
                   Join Us
@@ -638,7 +648,7 @@ export default function TwoPaneLayout() {
         <Initiative
           breadcrumbs={breadcrumbs}
           isSplit={hasSlotB}
-          onJoinClick={() => openInitiativeDetail("waitlist")}
+          onJoinClick={() => openInitiativeDetail("join")}
         />
       );
     }
@@ -754,7 +764,7 @@ export default function TwoPaneLayout() {
       return (
         <InitiativeDonate
           breadcrumbs={breadcrumbs}
-          onJoinClick={() => openInitiativeDetail("waitlist")}
+          onJoinClick={() => openInitiativeDetail("join")}
           onClose={handleCloseSlotB}
         />
       );
