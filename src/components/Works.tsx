@@ -90,7 +90,10 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
     <section className="works-page root-page">
       <div className="page-header">
         {breadcrumbs}
-        <h1>Digital Infrastructure for Humans</h1>
+        <h1>
+          Digital Infrastructure{" "}
+          <span className="title-suffix">for Humans</span>
+        </h1>
       </div>
       <p className="works-lead">
         We help small teams and fast-moving organizations overcome fragmented
