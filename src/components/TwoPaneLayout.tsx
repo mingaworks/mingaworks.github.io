@@ -390,8 +390,7 @@ export default function TwoPaneLayout() {
 
           <p className="lead-strong">
             Minga is a collaborative design and systems practice focused on
-            making complex operations
-            <br />
+            making complex operations&nbsp;
             <span className="lead-strong-highlight">
               clearer, safer, and more humane.
             </span>
@@ -423,7 +422,8 @@ export default function TwoPaneLayout() {
           </div>
 
           <p className="section-subtitle">
-            Future Community Page. A space for publishing knowledge.
+            Future Community Page.{" "}
+            <span>A space for publishing knowledge.</span>
           </p>
 
           <div className="base-row base-row-future">
@@ -489,7 +489,6 @@ export default function TwoPaneLayout() {
           breadcrumbs={breadcrumbs}
           isSplit={hasSlotB}
           onJoinClick={() => openInitiativeDetail("waitlist")}
-          onDonateClick={() => openInitiativeDetail("donate")}
         />
       );
     }
@@ -552,7 +551,22 @@ export default function TwoPaneLayout() {
     }
 
     if (CUSTOM_PAGES[id]?.kind === "about")
-      return <About breadcrumbs={breadcrumbs} onClose={handleCloseSlotB} />;
+      return (
+        <About
+          breadcrumbs={breadcrumbs}
+          onClose={handleCloseSlotB}
+          onWorksClick={() =>
+            attemptNavigate(() => {
+              setBreadcrumb(["works"]);
+            })
+          }
+          onInitiativeClick={() =>
+            attemptNavigate(() => {
+              setBreadcrumb(["initiative"]);
+            })
+          }
+        />
+      );
     if (CUSTOM_PAGES[id]?.kind === "waitlist")
       return <JoinUs breadcrumbs={breadcrumbs} onClose={handleCloseSlotB} />;
     if (CUSTOM_PAGES[id]?.kind === "contact")

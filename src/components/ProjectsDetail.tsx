@@ -295,17 +295,21 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
 
           <div className="projects-why-panel">
             <p className="projects-why-title">Why This Matters</p>
-            <p>When systems rely on human memory, they do not scale.</p>
-            <p className="projects-why-emphasis">They break silently.</p>
+            <p>
+              When systems rely on human memory, they do not scale.
+              <span className="projects-why-emphasis">
+                They break silently.
+              </span>
+            </p>
             <p>
               This project replaces manual interpretation with enforced logic,
               and fragile workflows with reliable structure.
             </p>
             <p className="projects-why-subtle">
               It represents how Minga approaches work:
-            </p>
-            <p style={{ fontWeight: 600, textAlign: "center" }}>
-              by designing for sustainability, <br /> not just usability.
+              <span>
+                by designing for sustainability, <br /> not just usability.
+              </span>
             </p>
           </div>
         </div>

@@ -4,14 +4,9 @@ type Props = {
   breadcrumbs: ReactNode;
   isSplit?: boolean;
   onJoinClick: () => void;
-  onDonateClick: () => void;
 };
 
-export default function Initiative({
-  breadcrumbs,
-  onJoinClick,
-  onDonateClick,
-}: Props) {
+export default function Initiative({ breadcrumbs, onJoinClick }: Props) {
   return (
     <section className="initiative-page root-page base-header">
       <div className="page-header">
@@ -52,7 +47,15 @@ export default function Initiative({
         </section>
 
         <section>
-          <h2>How to get involved</h2>
+          <h2>How this connects to our consultancy</h2>
+          <p>
+            Some of our initiative work informs how we approach consultancy and
+            system design. Likewise, certain community projects begin as
+            professional collaborations and later continue through the
+            initiative. This exchange allows practice and values to inform each
+            other without collapsing into a single model
+          </p>
+
           <p>
             If you want to lend a hand, join us, or support the continuation of
             this work, there are different ways to take part.
@@ -63,29 +66,8 @@ export default function Initiative({
               Join Us
             </button>
           </div>
-
-          <p>
-            Some initiatives grow through active collaboration, others through
-            shared resources and care.
-          </p>
-
-          <div className="initiative-action-row">
-            <button type="button" className="cta" onClick={onDonateClick}>
-              Donate
-            </button>
-          </div>
         </section>
       </div>
-
-      <h2>How this connects to our consultancy</h2>
-
-      <p>
-        Some of our initiative work informs how we approach consultancy and
-        system design. Likewise, certain community projects begin as
-        professional collaborations and later continue through the initiative.
-        This exchange allows practice and values to inform each other without
-        collapsing into a single model
-      </p>
     </section>
   );
 }

@@ -97,8 +97,8 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
       </div>
       <p className="works-lead">
         We help small teams and fast-moving organizations overcome fragmented
-        tools and cognitive overload. We don&apos;t just add features; we design
-        lean, reliable systems that turn operational friction into flow.
+        tools and cognitive overload. <br /> We don't just add features; we
+        design lean, reliable systems that turn operational friction into flow.
       </p>
 
       <div className="works-services-shell">

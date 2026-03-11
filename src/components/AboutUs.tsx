@@ -3,9 +3,13 @@ import React from "react";
 export default function About({
   breadcrumbs,
   onClose,
+  onWorksClick,
+  onInitiativeClick,
 }: {
   breadcrumbs: React.ReactNode;
   onClose?: () => void;
+  onWorksClick?: () => void;
+  onInitiativeClick?: () => void;
 }) {
   return (
     <div className="sticky-page about-page">
@@ -106,8 +110,26 @@ export default function About({
         </p>
 
         <div className="about-logos">
-          <img src="/images/mingaworks.svg" alt="Minga Works" />
-          <img src="/images/mingainitiative.svg" alt="Minga Initiative" />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={onWorksClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && onWorksClick?.()}
+            aria-label="Navigate to Works"
+          >
+            <img src="/images/mingaworks.svg" alt="Minga Works" />
+          </div>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={onInitiativeClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && onInitiativeClick?.()}
+            aria-label="Navigate to Initiative"
+          >
+            <img src="/images/mingainitiative.svg" alt="Minga Initiative" />
+          </div>
         </div>
       </div>
     </div>
