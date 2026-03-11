@@ -57,14 +57,14 @@ export default function InitiativeDonate({
           <h3>Ways to support</h3>
           <div className="initiative-donate-button-group">
             <p>One-time donation</p>
-            <button type="button" className="cta">
+            <button type="button" className="cm-primary">
               Donate
             </button>
           </div>
 
           <div className="initiative-donate-button-group">
             <p>Ongoing support</p>
-            <button type="button" className="cta">
+            <button type="button" className="cm-primary">
               Donate
             </button>
           </div>
@@ -78,7 +78,7 @@ export default function InitiativeDonate({
             stay connected.
           </p>
           <div className="initiative-action-row">
-            <button type="button" className="cta" onClick={onJoinClick}>
+            <button type="button" className="cm-primary" onClick={onJoinClick}>
               Join Us
             </button>
           </div>

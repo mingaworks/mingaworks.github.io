@@ -106,14 +106,16 @@ h1 {
 }
 
 button {
-  border: 1px solid #ffffff;
+  width: 200px;
+  height: 40px;
   color: #ffffff;
-  border-radius: var(--radius-md);
-  /* padding: 0.6em 1.2em; */
+  border-radius: 10px;
   justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   font-family: inherit;
+  letter-spacing: 10%;
+  line-height: 100%;
   background: transparent;
   cursor: pointer;
   transition: border-color 0.25s;

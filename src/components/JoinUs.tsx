@@ -49,7 +49,9 @@ export default function JoinUs({
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit">Join Us</button>
+        <button className="cm-primary" type="submit">
+          Join Us
+        </button>
       </form>
 
       <div className="waitlist-hero">

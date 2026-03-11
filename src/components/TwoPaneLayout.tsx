@@ -537,6 +537,11 @@ export default function TwoPaneLayout() {
               setBreadcrumb(["projects"]);
             })
           }
+          onSelectProject={(projectId) =>
+            attemptNavigate(() => {
+              setBreadcrumb(["projects", projectId]);
+            })
+          }
           onContact={() =>
             attemptNavigate(() => {
               setBreadcrumb(["base", "contact"]);

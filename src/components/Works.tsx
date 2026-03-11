@@ -113,12 +113,16 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
         >
           {SERVICES.map((service) => (
             <article key={service.id} className="service-card" role="listitem">
-              <div className="service-card-icon" aria-hidden>
-                <img src={service.iconPath} alt="" />
-              </div>
-              <div className="service-card-content">
-                <h2 className="service-card-title">{service.title}</h2>
+              <div className="service-card-top">
+                <div className="service-card-icon" aria-hidden>
+                  <img src={service.iconPath} alt="" />
+                </div>
                 <p className="service-card-desc">{service.description}</p>
+              </div>
+              <div className="service-card-middle">
+                <h2 className="service-card-title">{service.title}</h2>
+              </div>
+              <div className="service-card-bottom">
                 <button
                   type="button"
                   className="service-card-link"

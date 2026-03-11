@@ -355,12 +355,14 @@ export default function WorksDetail({
   onClose,
   onOpenProjects,
   onContact,
+  onSelectProject,
 }: {
   id: string;
   breadcrumbs: ReactNode;
   onClose?: () => void;
   onOpenProjects?: () => void;
   onContact?: () => void;
+  onSelectProject?: (id: string) => void;
 }) {
   const detail = WORKS_DETAILS[id];
   if (!detail) return null;
@@ -458,9 +460,24 @@ export default function WorksDetail({
                 </div>
                 <div className="operational-related-content">
                   <h4>Admin Scheduling System Redesign</h4>
-                  <p>Operational Architecture</p>
-                  <p>Digital Infrastructure</p>
+                  <div className="operational-related-desc-area">
+                    <div className="operational-related-tags">
+                      <p>Operational Architecture</p>
+                      <p>Digital Infrastructure</p>
+                    </div>
+                    <p className="operational-related-hover-desc">
+                      A scheduling system redesign focused on reducing cognitive
+                      load for administrators working across fragmented tools.
+                    </p>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  className="operational-related-view-link"
+                  onClick={() => onSelectProject?.("admin-scheduling-system")}
+                >
+                  View case study →
+                </button>
               </article>
 
               <button
@@ -479,11 +496,7 @@ export default function WorksDetail({
             <h3>
               Ready to see <span>where the gaps are?</span>
             </h3>
-            <button
-              type="button"
-              className="operational-cta"
-              onClick={onContact}
-            >
+            <button type="button" className="cm-primary" onClick={onContact}>
               Contact Us
             </button>
           </div>
@@ -582,9 +595,25 @@ export default function WorksDetail({
                 </div>
                 <div className="operational-related-content">
                   <h4>Fishnet Recycling Management System</h4>
-                  <p>Community Project</p>
-                  <p>Initiative-driven project</p>
+                  <div className="operational-related-desc-area">
+                    <div className="operational-related-tags">
+                      <p>Community Project</p>
+                      <p>Initiative-driven project</p>
+                    </div>
+                    <p className="operational-related-hover-desc">
+                      A management system developed to support the collection,
+                      tracking, and reuse of discarded fishnets through
+                      community collaboration.
+                    </p>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  className="operational-related-view-link"
+                  onClick={() => onSelectProject?.("fishnet-recycling")}
+                >
+                  View case study →
+                </button>
               </article>
 
               <button
@@ -603,11 +632,7 @@ export default function WorksDetail({
             <h3>
               Have an idea that needs a <span>solid foundation?</span>
             </h3>
-            <button
-              type="button"
-              className="operational-cta"
-              onClick={onContact}
-            >
+            <button type="button" className="cm-primary" onClick={onContact}>
               Contact Us
             </button>
           </div>
@@ -745,9 +770,24 @@ export default function WorksDetail({
                 </div>
                 <div className="operational-related-content">
                   <h4>Admin Scheduling System Redesign</h4>
-                  <p>Operational Architecture</p>
-                  <p>Digital Infrastructure</p>
+                  <div className="operational-related-desc-area">
+                    <div className="operational-related-tags">
+                      <p>Operational Architecture</p>
+                      <p>Digital Infrastructure</p>
+                    </div>
+                    <p className="operational-related-hover-desc">
+                      A scheduling system redesign focused on reducing cognitive
+                      load for administrators working across fragmented tools.
+                    </p>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  className="operational-related-view-link"
+                  onClick={() => onSelectProject?.("admin-scheduling-system")}
+                >
+                  View case study →
+                </button>
               </article>
 
               <button
@@ -766,11 +806,7 @@ export default function WorksDetail({
             <h3>
               Ready for a brand that <span>earns trust</span> on first contact?
             </h3>
-            <button
-              type="button"
-              className="operational-cta"
-              onClick={onContact}
-            >
+            <button type="button" className="cm-primary" onClick={onContact}>
               Contact Us
             </button>
           </div>
@@ -898,9 +934,25 @@ export default function WorksDetail({
                 </div>
                 <div className="operational-related-content">
                   <h4>Fishnet Recycling Management System</h4>
-                  <p>Community Project</p>
-                  <p>Initiative-driven project</p>
+                  <div className="operational-related-desc-area">
+                    <div className="operational-related-tags">
+                      <p>Community Project</p>
+                      <p>Initiative-driven project</p>
+                    </div>
+                    <p className="operational-related-hover-desc">
+                      A management system developed to support the collection,
+                      tracking, and reuse of discarded fishnets through
+                      community collaboration.
+                    </p>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  className="operational-related-view-link"
+                  onClick={() => onSelectProject?.("fishnet-recycling")}
+                >
+                  View case study →
+                </button>
               </article>
 
               <button
@@ -920,11 +972,7 @@ export default function WorksDetail({
               Facing a decision that needs a <span>clearer head</span> in the
               room?
             </h3>
-            <button
-              type="button"
-              className="operational-cta"
-              onClick={onContact}
-            >
+            <button type="button" className="cm-primary" onClick={onContact}>
               Contact Us
             </button>
           </div>
