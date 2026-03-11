@@ -20,15 +20,9 @@ import InitiativeDonate from "./InitiativeDonate";
 import Projects from "./Projects";
 import ProjectsDetail from "./ProjectsDetail";
 
-const TOP_LEVEL_ROUTES = new Set([
-  "base",
-  "works",
-  "initiative",
-  "projects",
-  "about",
-  "join",
-  "contact",
-]);
+const TOP_LEVEL_ROUTES = new Set(["base", "works", "initiative", "projects"]);
+
+const BASE_DETAIL_IDS = new Set(["about", "join", "contact"]);
 
 const WORKS_DETAIL_IDS = new Set([
   "ops-automation",
@@ -170,13 +164,15 @@ function deriveBasePath(pathname: string): string {
       return prefix ? `/${prefix}` : "";
     }
   }
-  // 2-segment detail URLs like /works/ops-automation or /projects/admin-scheduling-system
+  // 2-segment detail URLs like /works/ops-automation, /projects/admin-scheduling-system, or /base/about
   if (segments.length >= 2) {
     const maybeSub = segments[segments.length - 1];
     const maybeTop = segments[segments.length - 2];
     if (
       TOP_LEVEL_ROUTES.has(maybeTop) &&
-      (WORKS_DETAIL_IDS.has(maybeSub) || PROJECT_DETAIL_IDS.has(maybeSub))
+      (WORKS_DETAIL_IDS.has(maybeSub) ||
+        PROJECT_DETAIL_IDS.has(maybeSub) ||
+        (maybeTop === "base" && BASE_DETAIL_IDS.has(maybeSub)))
     ) {
       const prefix = segments.slice(0, -2).join("/");
       return prefix ? `/${prefix}` : "";
@@ -209,7 +205,9 @@ function breadcrumbFromPath(pathname: string, basePath: string): string[] {
   if (!TOP_LEVEL_ROUTES.has(first)) return ["base"];
   if (
     second &&
-    (WORKS_DETAIL_IDS.has(second) || PROJECT_DETAIL_IDS.has(second))
+    (WORKS_DETAIL_IDS.has(second) ||
+      PROJECT_DETAIL_IDS.has(second) ||
+      (first === "base" && BASE_DETAIL_IDS.has(second)))
   ) {
     if (third && CAROUSEL_IDS.has(third)) {
       return [first, second, third];
@@ -223,7 +221,12 @@ function breadcrumbFromPath(pathname: string, basePath: string): string[] {
 function pathFromBreadcrumb(crumbs: string[], basePath: string): string {
   const base = basePath === "" ? "" : basePath;
   const [first, second, third] = crumbs;
-  if (!first || first === "base") return base || "/";
+  if (!first || first === "base") {
+    if (second && BASE_DETAIL_IDS.has(second)) {
+      return `${base}/base/${second}`;
+    }
+    return base || "/";
+  }
   if (!TOP_LEVEL_ROUTES.has(first)) return base || "/";
   if (
     second &&
@@ -379,7 +382,8 @@ export default function TwoPaneLayout() {
 
   function handleSidebarClick(id: string) {
     attemptNavigate(() => {
-      if (TOP_LEVEL_ROUTES.has(id)) setBreadcrumb([id]);
+      if (BASE_DETAIL_IDS.has(id)) setBreadcrumb(["base", id]);
+      else if (TOP_LEVEL_ROUTES.has(id)) setBreadcrumb([id]);
       else if (WORKS_DETAIL_IDS.has(id)) setBreadcrumb(["works", id]);
       else if (PROJECT_DETAIL_IDS.has(id)) setBreadcrumb(["projects", id]);
       else setBreadcrumb(["base", id]);
