@@ -1172,6 +1172,100 @@
   margin-top: 2rem;
 }
 
+/* ── eye button next to h3 ── */
+
+.carousel-eye-btn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  vertical-align: middle;
+  opacity: 0.55;
+  transition: opacity 150ms ease;
+}
+
+.carousel-eye-btn:hover,
+.carousel-eye-btn:focus-visible {
+  opacity: 1;
+}
+
+.carousel-eye-btn img {
+  display: block;
+  width: 22px;
+  height: auto;
+}
+
+/* ── clickable image blocks ── */
+
+.projects-image-block-clickable {
+  cursor: pointer;
+}
+
+/* ── carousel page ── */
+
+.carousel-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-track {
+  display: flex;
+  flex: 1 1 0;
+  gap: 5vw;
+  min-height: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  border-radius: 29px;
+  box-shadow: -20px 0px 20px 0px rgba(29, 33, 62, 0.25) inset;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+  scroll-snap-align: start;
+}
+
+.carousel-preview {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+  overflow-x: auto;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.carousel-thumb {
+  flex: 0 0 auto;
+  height: 56px;
+  border-radius: 6px;
+  opacity: 0.45;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    opacity 150ms ease,
+    border-color 150ms ease;
+}
+
+.carousel-thumb:hover {
+  opacity: 0.75;
+}
+
+.carousel-thumb.active {
+  opacity: 1;
+  border-color: var(--color-primary, #0014a8);
+}
+
+.slot-a .operational-close {
+  display: none;
+}
+
 .works-page h1 {
   margin: 0 0 16px 0;
   font-size: clamp(2rem, 3.8vw, 3.5rem);

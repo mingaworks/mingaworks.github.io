@@ -4,9 +4,15 @@ type Props = {
   id: string;
   breadcrumbs: ReactNode;
   onClose?: () => void;
+  onOpenCarousel?: (carouselId: string) => void;
 };
 
-export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
+export default function ProjectsDetail({
+  id,
+  breadcrumbs,
+  onClose,
+  onOpenCarousel,
+}: Props) {
   if (id === "admin-scheduling-system") {
     return (
       <section className="sticky-page projects-detail-page">
@@ -60,8 +66,27 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
             <u> where decisions are made once </u> and enforced by the system.
           </p>
 
-          <h3>Operational Map</h3>
-          <div className="projects-image-block">
+          <h3>
+            Operational Map
+            <button
+              type="button"
+              className="carousel-eye-btn"
+              onClick={() => onOpenCarousel?.("carousel-operational-map")}
+              aria-label="View Operational Map carousel"
+            >
+              <img src="/icons/eye.svg" alt="" />
+            </button>
+          </h3>
+          <div
+            className="projects-image-block projects-image-block-clickable"
+            onClick={() => onOpenCarousel?.("carousel-operational-map")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                onOpenCarousel?.("carousel-operational-map");
+            }}
+          >
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780570/brainstorm-operational-map_viasle.png"
               alt="Operational map of scheduling system"
@@ -111,8 +136,27 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
             </div>
           </div>
 
-          <h3>Before State</h3>
-          <div className="projects-image-block">
+          <h3>
+            Before State
+            <button
+              type="button"
+              className="carousel-eye-btn"
+              onClick={() => onOpenCarousel?.("carousel-before-state")}
+              aria-label="View Before State carousel"
+            >
+              <img src="/icons/eye.svg" alt="" />
+            </button>
+          </h3>
+          <div
+            className="projects-image-block projects-image-block-clickable"
+            onClick={() => onOpenCarousel?.("carousel-before-state")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                onOpenCarousel?.("carousel-before-state");
+            }}
+          >
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780578/brainstorm-before-state_sar1km.png"
               alt="Before state of manual scheduling process"
@@ -148,8 +192,27 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
             </div>
           </div>
 
-          <h3>Before Workflow</h3>
-          <div className="projects-image-block">
+          <h3>
+            Before Workflow
+            <button
+              type="button"
+              className="carousel-eye-btn"
+              onClick={() => onOpenCarousel?.("carousel-before-workflow")}
+              aria-label="View Before Workflow carousel"
+            >
+              <img src="/icons/eye.svg" alt="" />
+            </button>
+          </h3>
+          <div
+            className="projects-image-block projects-image-block-clickable"
+            onClick={() => onOpenCarousel?.("carousel-before-workflow")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                onOpenCarousel?.("carousel-before-workflow");
+            }}
+          >
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780572/brainstorm-before-workflow_b6m8df.png"
               alt="Before workflow representation"
@@ -266,16 +329,56 @@ export default function ProjectsDetail({ id, breadcrumbs, onClose }: Props) {
             </div>
           </div>
 
-          <h3>After Workflow</h3>
-          <div className="projects-image-block">
+          <h3>
+            After Workflow
+            <button
+              type="button"
+              className="carousel-eye-btn"
+              onClick={() => onOpenCarousel?.("carousel-after-workflow")}
+              aria-label="View After Workflow carousel"
+            >
+              <img src="/icons/eye.svg" alt="" />
+            </button>
+          </h3>
+          <div
+            className="projects-image-block projects-image-block-clickable"
+            onClick={() => onOpenCarousel?.("carousel-after-workflow")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                onOpenCarousel?.("carousel-after-workflow");
+            }}
+          >
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780573/brainstorm-after-workflow_yh7jrq.png"
               alt="After workflow of redesigned admin scheduling system"
             />
           </div>
 
-          <h3>High Identity UI</h3>
-          <div className="projects-ui-stack" aria-hidden>
+          <h3>
+            High Identity UI
+            <button
+              type="button"
+              className="carousel-eye-btn"
+              onClick={() => onOpenCarousel?.("carousel-high-identity-ui")}
+              aria-label="View High Identity UI carousel"
+            >
+              <img src="/icons/eye.svg" alt="" />
+            </button>
+          </h3>
+          <div
+            className="projects-ui-stack"
+            aria-hidden
+            onClick={() => onOpenCarousel?.("carousel-high-identity-ui")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                onOpenCarousel?.("carousel-high-identity-ui");
+            }}
+            style={{ cursor: "pointer" }}
+          >
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780571/brainstorm-ui-1_zxm4sa.png"
               alt=""

@@ -34,6 +34,49 @@ const PROJECT_DETAIL_IDS = new Set([
   "fishnet-recycling",
 ]);
 
+const CAROUSEL_IDS = new Set([
+  "carousel-operational-map",
+  "carousel-before-state",
+  "carousel-before-workflow",
+  "carousel-after-workflow",
+  "carousel-high-identity-ui",
+]);
+
+const CAROUSEL_DATA: Record<string, { title: string; images: string[] }> = {
+  "carousel-operational-map": {
+    title: "Operational Map",
+    images: [
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780570/brainstorm-operational-map_viasle.png",
+    ],
+  },
+  "carousel-before-state": {
+    title: "Before State",
+    images: [
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780578/brainstorm-before-state_sar1km.png",
+    ],
+  },
+  "carousel-before-workflow": {
+    title: "Before Workflow",
+    images: [
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780572/brainstorm-before-workflow_b6m8df.png",
+    ],
+  },
+  "carousel-after-workflow": {
+    title: "After Workflow",
+    images: [
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780573/brainstorm-after-workflow_yh7jrq.png",
+    ],
+  },
+  "carousel-high-identity-ui": {
+    title: "High Identity UI",
+    images: [
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780571/brainstorm-ui-1_zxm4sa.png",
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780571/brainstorm-ui-2_iadknn.png",
+      "https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780575/brainstorm-ui-3_wmrrze.png",
+    ],
+  },
+};
+
 type ValueItem = {
   title: string;
   desc?: string;
@@ -104,6 +147,20 @@ function deriveBasePath(pathname: string): string {
   const normalized = normalizePath(pathname);
   const segments = normalized.split("/").filter(Boolean);
   if (segments.length === 0) return "";
+  // 3-segment carousel URLs like /projects/admin-scheduling-system/carousel-operational-map
+  if (segments.length >= 3) {
+    const maybeCarousel = segments[segments.length - 1];
+    const maybeDetail = segments[segments.length - 2];
+    const maybeTop = segments[segments.length - 3];
+    if (
+      TOP_LEVEL_ROUTES.has(maybeTop) &&
+      PROJECT_DETAIL_IDS.has(maybeDetail) &&
+      CAROUSEL_IDS.has(maybeCarousel)
+    ) {
+      const prefix = segments.slice(0, -3).join("/");
+      return prefix ? `/${prefix}` : "";
+    }
+  }
   // 2-segment detail URLs like /works/ops-automation or /projects/admin-scheduling-system
   if (segments.length >= 2) {
     const maybeSub = segments[segments.length - 1];
@@ -139,12 +196,15 @@ function breadcrumbFromPath(pathname: string, basePath: string): string[] {
 
   const segments = suffix.split("/").filter(Boolean);
   if (segments.length === 0) return ["base"];
-  const [first, second] = segments;
+  const [first, second, third] = segments;
   if (!TOP_LEVEL_ROUTES.has(first)) return ["base"];
   if (
     second &&
     (WORKS_DETAIL_IDS.has(second) || PROJECT_DETAIL_IDS.has(second))
   ) {
+    if (third && CAROUSEL_IDS.has(third)) {
+      return [first, second, third];
+    }
     return [first, second];
   }
   return [first];
@@ -153,16 +213,105 @@ function breadcrumbFromPath(pathname: string, basePath: string): string[] {
 /** Maps the full breadcrumb array to a URL path. */
 function pathFromBreadcrumb(crumbs: string[], basePath: string): string {
   const base = basePath === "" ? "" : basePath;
-  const [first, second] = crumbs;
+  const [first, second, third] = crumbs;
   if (!first || first === "base") return base || "/";
   if (!TOP_LEVEL_ROUTES.has(first)) return base || "/";
   if (
     second &&
     (WORKS_DETAIL_IDS.has(second) || PROJECT_DETAIL_IDS.has(second))
   ) {
+    if (third && CAROUSEL_IDS.has(third)) {
+      return `${base}/${first}/${second}/${third}`;
+    }
     return `${base}/${first}/${second}`;
   }
   return `${base}/${first}`;
+}
+
+function CarouselPage({
+  data,
+  breadcrumbs,
+  onClose,
+}: {
+  data: { title: string; images: string[] };
+  breadcrumbs: React.ReactNode;
+  onClose: () => void;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    function onScroll() {
+      const el = trackRef.current;
+      if (!el) return;
+      const trackRect = el.getBoundingClientRect();
+      const children = Array.from(el.children) as HTMLElement[];
+      let closest = 0;
+      let minDist = Infinity;
+      for (let i = 0; i < children.length; i++) {
+        const childRect = children[i].getBoundingClientRect();
+        const dist = Math.abs(childRect.left - trackRect.left);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      }
+      setActiveIndex(closest);
+    }
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function scrollTo(index: number) {
+    const track = trackRef.current;
+    if (!track) return;
+    const child = track.children[index] as HTMLElement | undefined;
+    if (child) {
+      track.scrollTo({ left: child.offsetLeft, behavior: "smooth" });
+    }
+  }
+
+  return (
+    <section className="sticky-page carousel-page">
+      <div className="page-header">
+        <div className="page-breadcrumb">
+          {breadcrumbs}
+          <button
+            type="button"
+            className="operational-close"
+            onClick={onClose}
+            aria-label={`Close ${data.title}`}
+          >
+            <img src="/icons/close.svg" alt="" />
+          </button>
+        </div>
+        <h2>{data.title}</h2>
+      </div>
+      <div className="carousel-track" ref={trackRef}>
+        {data.images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`${data.title} ${i + 1}`}
+            className="carousel-slide"
+          />
+        ))}
+      </div>
+      <div className="carousel-preview">
+        {data.images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`Thumbnail ${i + 1}`}
+            className={`carousel-thumb${i === activeIndex ? " active" : ""}`}
+            onClick={() => scrollTo(i)}
+          />
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default function TwoPaneLayout() {
@@ -307,6 +456,7 @@ export default function TwoPaneLayout() {
     let raw: string;
     if (id === "base") raw = "home";
     else if (CUSTOM_PAGES[id]) raw = CUSTOM_PAGES[id].label;
+    else if (CAROUSEL_DATA[id]) raw = CAROUSEL_DATA[id].title;
     else {
       const n = getNode(id);
       raw = n?.label ?? n?.title ?? id;
@@ -507,6 +657,18 @@ export default function TwoPaneLayout() {
       );
     }
 
+    if (CAROUSEL_IDS.has(id)) {
+      const data = CAROUSEL_DATA[id];
+      if (!data) return null;
+      return (
+        <CarouselPage
+          data={data}
+          breadcrumbs={breadcrumbs}
+          onClose={handleCloseSlotB}
+        />
+      );
+    }
+
     if (PROJECT_DETAIL_IDS.has(id)) {
       return (
         <ProjectsDetail
@@ -515,6 +677,17 @@ export default function TwoPaneLayout() {
           onClose={() =>
             attemptNavigate(() => {
               setBreadcrumb(["projects"]);
+            })
+          }
+          onOpenCarousel={(carouselId) =>
+            attemptNavigate(() => {
+              setBreadcrumb((b) => {
+                const last = b[b.length - 1];
+                if (CAROUSEL_IDS.has(last)) {
+                  return [...b.slice(0, -1), carouselId];
+                }
+                return [...b, carouselId];
+              });
             })
           }
         />
@@ -604,9 +777,10 @@ export default function TwoPaneLayout() {
 
   const crumbsB = getBreadcrumbItemsFor(slotBId);
   const variantB = getBreadcrumbVariantFor(slotBId);
-  const breadcrumbsB = crumbsB.length ? (
+  const crumbsBDisplay = crumbsB.length > 2 ? crumbsB.slice(-2) : crumbsB;
+  const breadcrumbsB = crumbsBDisplay.length ? (
     <Breadcrumbs
-      items={crumbsB}
+      items={crumbsBDisplay}
       onClick={handleBreadcrumbClick}
       variant={variantB}
     />
