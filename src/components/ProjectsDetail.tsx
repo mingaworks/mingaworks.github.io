@@ -438,7 +438,7 @@ export default function ProjectsDetail({
           <h2>Fishnet Recycling Management System</h2>
         </div>
 
-        <div className="page-section projects-detail-placeholder">
+        <div className="page-section projects-detail-section">
           <h3>Case Study in Progress</h3>
           <p>
             This inner page is being prepared and will be published with the
@@ -465,7 +465,7 @@ export default function ProjectsDetail({
         </div>
         <h2>Project Case Study</h2>
       </div>
-      <div className="page-section projects-detail-placeholder">
+      <div className="page-section projects-detail-section">
         <h3>Case Study in Progress</h3>
         <p>This project detail page will be added soon.</p>
       </div>

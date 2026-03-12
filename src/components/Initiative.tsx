@@ -8,13 +8,13 @@ type Props = {
 
 export default function Initiative({ breadcrumbs, onJoinClick }: Props) {
   return (
-    <section className="initiative-page root-page base-header">
+    <section className="root-page" data-page="initiative">
       <div className="page-header">
         {breadcrumbs}
         <h1>Common Ground</h1>
       </div>
 
-      <p className="lead-strong">
+      <p className="root-lead-p">
         Minga Initiative is where collective effort takes precedence over
         ownership.
       </p>
@@ -31,7 +31,7 @@ export default function Initiative({ breadcrumbs, onJoinClick }: Props) {
       <div className="initiative-columns">
         <section>
           <h2>What we focus on</h2>
-          <p className="lead-strong">What this initiative supports</p>
+          <p className="root-lead-p">What this initiative supports</p>
           <p>
             The initiative brings together work that is exploratory,
             community-driven, and value-led. These projects are often slower,

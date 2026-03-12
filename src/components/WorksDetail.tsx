@@ -385,32 +385,30 @@ export default function WorksDetail({
           <h2>{detail.title}</h2>
         </div>
 
-        <div className="page-section works-detail-section-block">
-          <p className="operational-intro">
+        <div className="home-section">
+          <p>
             Most teams don't have a productivity problem, they have a systems
             problem. We map how your team actually moves, locate where effort
             disappears into friction, and replace that friction with automated,
             maintainable infrastructure. Less coordination overhead. More work
             that matters.
+            <br />
+            <br />
+            <br />
+            You might need this if...
           </p>
-
-          <div className="operational-needs">
-            <h3 className="operational-section-title">
-              You might need this <span>if...</span>
-            </h3>
-            <div className="operational-needs-grid" role="list">
-              {OPS_NEED_CARDS.map((card) => (
-                <article
-                  key={card.title}
-                  className="operational-need-card"
-                  role="listitem"
-                >
-                  <h4>{card.title}</h4>
-                  <p>{card.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+        </div>
+        <div className="operational-needs-grid" role="list">
+          {OPS_NEED_CARDS.map((card) => (
+            <article
+              key={card.title}
+              className="operational-need-card"
+              role="listitem"
+            >
+              <h4>{card.title}</h4>
+              <p>{card.description}</p>
+            </article>
+          ))}
         </div>
 
         <h2>How we work</h2>
@@ -476,7 +474,7 @@ export default function WorksDetail({
                   className="operational-related-view-link"
                   onClick={() => onSelectProject?.("admin-scheduling-system")}
                 >
-                  View case study →
+                  View case study
                 </button>
               </article>
 
@@ -491,15 +489,14 @@ export default function WorksDetail({
           </div>
         </section>
 
-        <div className="page-section">
-          <div className="operational-cta-section">
-            <h3>
-              Ready to see <span>where the gaps are?</span>
-            </h3>
-            <button type="button" className="cm-primary" onClick={onContact}>
-              Contact Us
-            </button>
-          </div>
+        <div className="operational-cta-section">
+          <p>Ready to see</p>
+          <p>
+            where the <span> gaps</span> are?
+          </p>
+          <button type="button" className="cm-primary" onClick={onContact}>
+            Contact Us
+          </button>
         </div>
       </section>
     );
@@ -507,7 +504,7 @@ export default function WorksDetail({
 
   if (id === "product-archt") {
     return (
-      <section className="sticky-page works-detail-page operational-detail-page product-detail-page">
+      <section className="sticky-page works-detail-page operational-detail-page">
         <div className="page-header">
           <div className="page-breadcrumb">
             {breadcrumbs}
@@ -523,32 +520,30 @@ export default function WorksDetail({
           <h2>{detail.title}</h2>
         </div>
 
-        <div className="page-section works-detail-section-block">
-          <p className="operational-intro">
+        <div className="home-section">
+          <p>
             A good idea doesn't fail at the concept stage, it fails when the
             first version is too heavy to move, too fragile to scale, or too
             vague to attract investment. We scope, design, and build the version
             of your product that proves the concept without painting you into a
             corner.
+            <br />
+            <br />
+            <br />
+            You might need this if...
           </p>
-
-          <div className="operational-needs">
-            <h3 className="operational-section-title">
-              You might need this <span>if...</span>
-            </h3>
-            <div className="operational-needs-grid" role="list">
-              {PRODUCT_NEED_CARDS.map((card) => (
-                <article
-                  key={card.title}
-                  className="operational-need-card"
-                  role="listitem"
-                >
-                  <h4>{card.title}</h4>
-                  <p>{card.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+        </div>
+        <div className="operational-needs-grid" role="list">
+          {PRODUCT_NEED_CARDS.map((card) => (
+            <article
+              key={card.title}
+              className="operational-need-card"
+              role="listitem"
+            >
+              <h4>{card.title}</h4>
+              <p>{card.description}</p>
+            </article>
+          ))}
         </div>
 
         <h2>How we work</h2>
@@ -612,7 +607,7 @@ export default function WorksDetail({
                   className="operational-related-view-link"
                   onClick={() => onSelectProject?.("fishnet-recycling")}
                 >
-                  View case study →
+                  View case study
                 </button>
               </article>
 
@@ -627,15 +622,12 @@ export default function WorksDetail({
           </div>
         </section>
 
-        <div className="page-section">
-          <div className="operational-cta-section">
-            <h3>
-              Have an idea that needs a <span>solid foundation?</span>
-            </h3>
-            <button type="button" className="cm-primary" onClick={onContact}>
-              Contact Us
-            </button>
-          </div>
+        <div className="operational-cta-section">
+          <p>Have an idea that needs a</p>
+          <span>solid foundation?</span>
+          <button type="button" className="cm-primary" onClick={onContact}>
+            Contact Us
+          </button>
         </div>
       </section>
     );
@@ -659,32 +651,30 @@ export default function WorksDetail({
           <h2>{detail.title}</h2>
         </div>
 
-        <div className="page-section works-detail-section-block">
-          <p className="operational-intro">
+        <div className="home-section">
+          <p>
             A system that works but feels wrong will be abandoned. We design the
             space between your backend logic and your user's intuition. A brand
             that communicates trust, interfaces that guide without friction, and
             experiences that make digitalization feel like an upgrade, not an
             imposition.
+            <br />
+            <br />
+            <br />
+            You might need this if...
           </p>
-
-          <div className="operational-needs">
-            <h3 className="operational-section-title">
-              You might need this <span>if...</span>
-            </h3>
-            <div className="operational-needs-grid" role="list">
-              {VISUAL_NEED_CARDS.map((card) => (
-                <article
-                  key={card.title}
-                  className="operational-need-card"
-                  role="listitem"
-                >
-                  <h4>{card.title}</h4>
-                  <p>{card.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+        </div>
+        <div className="operational-needs-grid" role="list">
+          {VISUAL_NEED_CARDS.map((card) => (
+            <article
+              key={card.title}
+              className="operational-need-card"
+              role="listitem"
+            >
+              <h4>{card.title}</h4>
+              <p>{card.description}</p>
+            </article>
+          ))}
         </div>
 
         <h2>What we deliver</h2>
@@ -786,7 +776,7 @@ export default function WorksDetail({
                   className="operational-related-view-link"
                   onClick={() => onSelectProject?.("admin-scheduling-system")}
                 >
-                  View case study →
+                  View case study
                 </button>
               </article>
 
@@ -801,15 +791,13 @@ export default function WorksDetail({
           </div>
         </section>
 
-        <div className="page-section">
-          <div className="operational-cta-section">
-            <h3>
-              Ready for a brand that <span>earns trust</span> on first contact?
-            </h3>
-            <button type="button" className="cm-primary" onClick={onContact}>
-              Contact Us
-            </button>
-          </div>
+        <div className="operational-cta-section">
+          <p>Ready for a brand that</p>
+          <span>earns trust</span>
+          <p>on first contact?</p>
+          <button type="button" className="cm-primary" onClick={onContact}>
+            Contact Us
+          </button>
         </div>
       </section>
     );
@@ -833,60 +821,54 @@ export default function WorksDetail({
           <h2>{detail.title}</h2>
         </div>
 
-        <div className="page-section works-detail-section-block">
-          <p className="operational-intro">
+        <div className="home-section">
+          <p>
             Some problems don't need more execution. They need clearer thinking.
             We act as fractional CTO and CDO for founders and teams who need a
             senior technical and creative perspective at the table: on
             architecture choices, tooling decisions, hiring sequencing, and the
             long arc of the product.
+            <br />
+            <br />
+            <br />
+            You might need this if...
           </p>
-
-          <div className="operational-needs">
-            <h3 className="operational-section-title">
-              You might need this <span>if...</span>
-            </h3>
-            <div className="operational-needs-grid" role="list">
-              {SYSTEM_NEED_CARDS.map((card) => (
-                <article
-                  key={card.title}
-                  className="operational-need-card"
-                  role="listitem"
-                >
-                  <h4>{card.title}</h4>
-                  <p>{card.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+        </div>
+        <div className="operational-needs-grid" role="list">
+          {SYSTEM_NEED_CARDS.map((card) => (
+            <article
+              key={card.title}
+              className="operational-need-card"
+              role="listitem"
+            >
+              <h4>{card.title}</h4>
+              <p>{card.description}</p>
+            </article>
+          ))}
         </div>
 
         <h2>Engagement models</h2>
 
-        <section className="system-advisory-engagement works-detail-section-block">
-          <div className="system-advisory-engagement-media" aria-hidden>
+        <section className="works-engagement">
+          <div className="works-engagement-media" aria-hidden>
             <img
               src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780577/systems-advisory_ycgbld.png"
               alt=""
             />
           </div>
 
-          <div className="page-section">
-            <div className="system-advisory-engagement-cards" role="list">
-              {SYSTEM_ENGAGEMENT_MODELS.map((item) => (
-                <article
-                  key={item.title}
-                  className="system-advisory-engagement-card"
-                  role="listitem"
-                >
-                  <p className="system-advisory-engagement-label">
-                    {item.label}
-                  </p>
-                  <h4>{item.title}</h4>
-                  <p>{item.description}</p>
-                </article>
-              ))}
-            </div>
+          <div className="works-engagement-cards" role="list">
+            {SYSTEM_ENGAGEMENT_MODELS.map((item) => (
+              <article
+                key={item.title}
+                className="works-engagement-card"
+                role="listitem"
+              >
+                <p>{item.label}</p>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -951,7 +933,7 @@ export default function WorksDetail({
                   className="operational-related-view-link"
                   onClick={() => onSelectProject?.("fishnet-recycling")}
                 >
-                  View case study →
+                  View case study
                 </button>
               </article>
 
@@ -966,65 +948,15 @@ export default function WorksDetail({
           </div>
         </section>
 
-        <div className="page-section">
-          <div className="operational-cta-section">
-            <h3>
-              Facing a decision that needs a <span>clearer head</span> in the
-              room?
-            </h3>
-            <button type="button" className="cm-primary" onClick={onContact}>
-              Contact Us
-            </button>
-          </div>
+        <div className="operational-cta-section">
+          <p>Facing a decision that needs a</p>
+          <span>clearer head</span>
+          <p>in the room?</p>
+          <button type="button" className="cm-primary" onClick={onContact}>
+            Contact Us
+          </button>
         </div>
       </section>
     );
   }
-
-  return (
-    <section className="sticky-page works-detail-page">
-      <div className="page-header">
-        <div className="page-breadcrumb">
-          {breadcrumbs}
-          <button
-            type="button"
-            className="operational-close"
-            onClick={onClose}
-            aria-label={`Close ${detail.title} details`}
-          >
-            <img src="/icons/close.svg" alt="" />
-          </button>
-        </div>
-        <h2>{detail.title}</h2>
-      </div>
-
-      <div className="page-section works-detail-section-block">
-        <p className="works-detail-intro">{detail.intro}</p>
-      </div>
-
-      <h2>What this includes</h2>
-
-      <div className="page-section works-detail-section-block">
-        <section className="works-detail-column">
-          <ul>
-            {detail.includes.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-      </div>
-
-      <h2>When this is useful</h2>
-
-      <div className="page-section works-detail-section-block">
-        <section className="works-detail-column">
-          <ul>
-            {detail.usefulWhen.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-      </div>
-    </section>
-  );
 }

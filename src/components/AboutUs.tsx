@@ -101,16 +101,14 @@ export default function About({
           in rhythm also connects to dance as a form of shared intelligence.
         </p>
 
-        <p
-          style={{ textAlign: "center", fontSize: "1.4rem", margin: "4rem 0" }}
-        >
+        <p className="about-dance-quote">
           Like a dance, Minga is not about standing out,
           <br /> but about staying in relation.
         </p>
 
         <div className="about-logos">
           <div
-            style={{ cursor: "pointer" }}
+            className="about-logo-link"
             onClick={onWorksClick}
             role="button"
             tabIndex={0}
@@ -120,7 +118,7 @@ export default function About({
             <img src="/images/mingaworks.svg" alt="Minga Works" />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            className="about-logo-link"
             onClick={onInitiativeClick}
             role="button"
             tabIndex={0}

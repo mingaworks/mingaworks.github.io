@@ -35,16 +35,16 @@ const PROJECTS: ProjectCard[] = [
 
 export default function Projects({ breadcrumbs, onSelect }: Props) {
   return (
-    <section className="projects-page root-page">
+    <section className="root-page" data-page="projects">
       <div className="page-header">
         {breadcrumbs}
         <h1>Projects & Case Studies</h1>
       </div>
-      <p className="projects-lead">
+      <p className="root-lead-p">
         Here you will find selected projects resulting from Minga's consulting
         and initiative work.
       </p>
-      <p className="projects-intro">
+      <p>
         Each project reflects a specific context, constraint, and collaboration
         rather than a repeatable formula. Some projects begin as services,
         others evolve into long-term community efforts. What connects them is a

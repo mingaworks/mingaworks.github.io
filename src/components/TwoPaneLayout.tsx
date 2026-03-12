@@ -546,16 +546,16 @@ export default function TwoPaneLayout() {
     if (!id) return null;
     if (id === "base") {
       return (
-        <div className="base-header root-page">
+        <div className="root-page" data-page="base">
           <div className="page-header">
             {breadcrumbs}
             <h1>What is Minga?</h1>
           </div>
 
-          <p className="lead-strong">
+          <p className="root-lead-p">
             Minga is a collaborative design and systems practice focused on
             making complex operations&nbsp;
-            <span className="lead-strong-highlight">
+            <span className="root-lead-highlight">
               clearer, safer, and more humane.
             </span>
           </p>
@@ -586,8 +586,8 @@ export default function TwoPaneLayout() {
           </div>
 
           <p className="section-subtitle">
-            Future Community Page.{" "}
-            <span>A space for publishing knowledge.</span>
+            Future Community Page.
+            <span> A space for publishing knowledge.</span>
           </p>
 
           <div className="base-row base-row-future">

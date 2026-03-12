@@ -82,7 +82,7 @@ export default function ContactUs({
   }
 
   return (
-    <div className="sticky-page contact-page">
+    <div className="sticky-page works-detail-page">
       <div className="page-header">
         <div className="page-breadcrumb">
           {breadcrumbs}
@@ -98,12 +98,14 @@ export default function ContactUs({
         <h2>Get in Touch</h2>
       </div>
 
-      <p className="page-section">
-        We work with small teams and coordination-based organizations that need
-        clarity, not more tools. If you’re interested in our services, have a
-        specific challenge in mind, or want to explore a collaboration, let’s
-        talk.
-      </p>
+      <div className="home-section">
+        <p>
+          We work with small teams and coordination-based organizations that
+          need clarity, not more tools. If you're interested in our services,
+          have a specific challenge in mind, or want to explore a collaboration,
+          let's talk.
+        </p>
+      </div>
 
       <form className="cm-form" onSubmit={handleSubmit}>
         <label>
@@ -153,12 +155,14 @@ export default function ContactUs({
         )}
       </form>
 
-      <p style={{ marginTop: "3rem" }}>You can contact us if you want to:</p>
-      <ul style={{ marginTop: "0.5rem" }}>
-        <li>Get support with digital tools, systems, or workflows</li>
-        <li>Discuss branding, product, or service design</li>
-        <li>Explore long-term or research-based collaborations</li>
-      </ul>
+      <div className="home-section">
+        <p>You can contact us if you want to:</p>
+        <ul>
+          <li>Get support with digital tools, systems, or workflows</li>
+          <li>Discuss branding, product, or service design</li>
+          <li>Explore long-term or research-based collaborations</li>
+        </ul>
+      </div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function JoinUs({
   }
 
   return (
-    <div className="sticky-page">
+    <div className="sticky-page works-detail-page">
       <div className="page-header">
         <div className="page-breadcrumb">
           {breadcrumbs}
@@ -31,11 +31,13 @@ export default function JoinUs({
         <h2>Join the Minga waitlist</h2>
       </div>
 
-      <p className="page-section">
-        Minga is building a shared space for knowledge, tools, and collective
-        practices. The community page is still evolving, and we’re intentionally
-        growing it slowly.
-      </p>
+      <div className="home-section">
+        <p>
+          Minga is building a shared space for knowledge, tools, and collective
+          practices. The community page is still evolving, and we're
+          intentionally growing it slowly.
+        </p>
+      </div>
 
       <form
         className="waitlist-row"
@@ -55,29 +57,32 @@ export default function JoinUs({
       </form>
 
       <div className="waitlist-hero">
+        <div className="hero-text">
+          <p>
+            Joining the waitlist means staying close to this process, <br />
+            not just receiving updates.
+          </p>
+        </div>
         <img
           src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780578/ladanse-waitlist-bg_z1qvn2.png"
           alt="Waitlist background"
         />
-        <div className="hero-text">
-          <p>
-            Joining the waitlist means staying close to this process, not just
-            receiving updates.
-          </p>
-        </div>
       </div>
 
-      <p>By joining the waitlist, you will:</p>
-      <ul>
-        <li>Get early access to the community space when it opens</li>
-        <li>
-          Be invited to contribute, test, or collaborate on upcoming initiatives
-        </li>
-        <li>
-          Receive occasional updates about new tools, research, and shared
-          learnings
-        </li>
-      </ul>
+      <div className="home-section">
+        <p>By joining the waitlist, you will:</p>
+        <ul style={{ marginBottom: "4rem" }}>
+          <li>Get early access to the community space when it opens</li>
+          <li>
+            Be invited to contribute, test, or collaborate on upcoming
+            initiatives
+          </li>
+          <li>
+            Receive occasional updates about new tools, research, and shared
+            learnings
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

@@ -87,7 +87,7 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
   }, []);
 
   return (
-    <section className="works-page root-page">
+    <section className="root-page" data-page="works">
       <div className="page-header">
         {breadcrumbs}
         <h1>
