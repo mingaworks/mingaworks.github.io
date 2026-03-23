@@ -326,6 +326,7 @@
 
 .sticky-page > .page-header > .page-breadcrumb {
   display: flex;
+  align-items: flex-end;
   position: relative;
   --breadcrumb-close-right: var(--page-pad-inline);
   min-height: var(--sticky-row-h);
@@ -336,6 +337,7 @@
 
 .sticky-page > .page-header > .page-breadcrumb .floating-breadcrumb {
   margin-bottom: 0;
+  align-self: flex-end;
 }
 
 .sticky-page > .page-header > h2 {
@@ -686,19 +688,20 @@
 }
 
 .floating-breadcrumb .crumb {
-  display: inline-flex;
+  /* display: inline-flex; */
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--breadcrumb-text);
-  padding: 0.55em 0.7em;
+  color: var(--breadcrumb-text-muted, var(--breadcrumb-text));
+  padding: 4px 11px;
   font-weight: 400;
   line-height: 160%;
   letter-spacing: normal;
   cursor: pointer;
   position: relative;
   width: max-content;
+  height: auto;
 }
 
 .floating-breadcrumb .crumb::before {
@@ -721,13 +724,19 @@
   pointer-events: none;
 }
 
+.floating-breadcrumb .crumb:last-child {
+  color: var(--breadcrumb-text);
+}
+
 .floating-breadcrumb.variant-default {
   --breadcrumb-text: var(--text-primary);
+  --breadcrumb-text-muted: var(--text-muted);
   --breadcrumb-border-rgb: var(--color-primary-rgb);
 }
 
 .floating-breadcrumb.variant-inverted {
   --breadcrumb-text: var(--text-inverted);
+  --breadcrumb-text-muted: rgba(255, 255, 255, 0.5);
 }
 
 .slot .floating-breadcrumb {
@@ -796,23 +805,25 @@
   min-height: var(--sticky-row-h);
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   align-self: flex-start;
   margin-bottom: 0;
 }
 
 .two-pane[data-pane="split"] .root-page > .page-header h1 {
-  min-height: var(--sticky-row-h);
   display: flex;
   align-items: flex-end;
   margin: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
   font-size: 1.6rem;
 }
 
 .two-pane[data-pane="split"] .sticky-page > .page-header > h2 {
+  min-height: 0;
   align-items: flex-end;
-  padding-top: 0;
-  padding-bottom: 0.2rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
 }
 
 .two-pane[data-pane="split"] .root-page h1 .title-suffix {
@@ -1608,8 +1619,7 @@
 .operational-close {
   position: absolute;
   right: var(--breadcrumb-close-right, var(--page-pad-inline, 4vw));
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0;
   border: none;
   padding: 0.5rem;
   width: 2.5rem;
