@@ -44,24 +44,26 @@ const SERVICES: ServiceCard[] = [
 ];
 
 export default function Works({ breadcrumbs, onSelect }: Props) {
+  const rootRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const scrollOrigin = useRef(0);
   const hasDragged = useRef(false);
 
-  // Non-passive wheel → horizontal scroll
+  // Non-passive wheel anywhere on the page → horizontal scroll the card track
   useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
+    const root = rootRef.current;
+    const track = trackRef.current;
+    if (!root || !track) return;
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // let native horizontal scroll through
-      if (el.scrollWidth <= el.clientWidth) return; // no horizontal overflow → let event bubble to parent
+      if (track.scrollWidth <= track.clientWidth) return; // no horizontal overflow → let event bubble to parent
       e.preventDefault();
-      el.scrollLeft += e.deltaY;
+      track.scrollLeft += e.deltaY;
     };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+    root.addEventListener("wheel", onWheel, { passive: false });
+    return () => root.removeEventListener("wheel", onWheel);
   }, []);
 
   const startDrag = useCallback((pageX: number) => {
@@ -87,7 +89,7 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
   }, []);
 
   return (
-    <section className="root-page" data-page="works">
+    <section ref={rootRef} className="root-page" data-page="works">
       <div className="page-header">
         {breadcrumbs}
         <h1>

@@ -1432,10 +1432,6 @@
 
 .service-card:hover {
   background: rgba(255, 255, 255, 0.06);
-  box-shadow:
-    inset 0px -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0px 2px 4px rgba(255, 255, 255, 0.4),
-    0 20px 38px rgba(8, 20, 35, 0.28);
 }
 
 .service-card::before {
@@ -1480,8 +1476,9 @@
   width: 200px;
   height: auto;
   display: block;
-  filter: brightness(0) saturate(100%) invert(100%);
-  opacity: 0.25;
+  filter: brightness(0) saturate(100%) invert(54%) sepia(18%) saturate(600%)
+    hue-rotate(186deg) brightness(95%) contrast(88%);
+  opacity: 0.5;
 }
 
 .service-card:hover .service-card-icon {
