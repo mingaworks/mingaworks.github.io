@@ -398,13 +398,9 @@ export default function WorksDetail({
             You might need this if...
           </p>
         </div>
-        <div className="operational-needs-grid" role="list">
+        <div className="needs-grid" role="list">
           {OPS_NEED_CARDS.map((card) => (
-            <article
-              key={card.title}
-              className="operational-need-card"
-              role="listitem"
-            >
+            <article key={card.title} className="needs-card" role="listitem">
               <h4>{card.title}</h4>
               <p>{card.description}</p>
             </article>
@@ -446,24 +442,28 @@ export default function WorksDetail({
 
         <h2>Related projects</h2>
 
-        <section className="operational-related works-detail-section-block">
+        <section className="detail-related works-detail-section-block">
           <div className="page-section">
-            <div className="operational-related-panel">
-              <article className="operational-related-card">
-                <div className="operational-related-icon" aria-hidden>
+            <div className="detail-related-panel">
+              <article
+                className="detail-related-card"
+                onClick={() => onSelectProject?.("admin-scheduling-system")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="detail-related-icon" aria-hidden>
                   <img
                     src="/icons/projects/admin-scheduling-system.svg"
                     alt=""
                   />
                 </div>
-                <div className="operational-related-content">
+                <div className="detail-related-content">
                   <h4>Admin Scheduling System Redesign</h4>
-                  <div className="operational-related-desc-area">
-                    <div className="operational-related-tags">
+                  <div className="detail-related-desc-area">
+                    <div className="detail-related-tags">
                       <p>Operational Architecture</p>
                       <p>Digital Infrastructure</p>
                     </div>
-                    <p className="operational-related-hover-desc">
+                    <p className="detail-related-hover-desc">
                       A scheduling system redesign focused on reducing cognitive
                       load for administrators working across fragmented tools.
                     </p>
@@ -471,7 +471,7 @@ export default function WorksDetail({
                 </div>
                 <button
                   type="button"
-                  className="operational-related-view-link"
+                  className="detail-related-view-link"
                   onClick={() => onSelectProject?.("admin-scheduling-system")}
                 >
                   View case study
@@ -480,7 +480,7 @@ export default function WorksDetail({
 
               <button
                 type="button"
-                className="operational-related-link"
+                className="detail-related-link"
                 onClick={onOpenProjects}
               >
                 View all projects
@@ -533,13 +533,9 @@ export default function WorksDetail({
             You might need this if...
           </p>
         </div>
-        <div className="operational-needs-grid" role="list">
+        <div className="needs-grid" role="list">
           {PRODUCT_NEED_CARDS.map((card) => (
-            <article
-              key={card.title}
-              className="operational-need-card"
-              role="listitem"
-            >
+            <article key={card.title} className="needs-card" role="listitem">
               <h4>{card.title}</h4>
               <p>{card.description}</p>
             </article>
@@ -581,21 +577,25 @@ export default function WorksDetail({
 
         <h2>Related projects</h2>
 
-        <section className="operational-related works-detail-section-block">
+        <section className="detail-related works-detail-section-block">
           <div className="page-section">
-            <div className="operational-related-panel">
-              <article className="operational-related-card">
-                <div className="operational-related-icon" aria-hidden>
+            <div className="detail-related-panel">
+              <article
+                className="detail-related-card"
+                onClick={() => onSelectProject?.("fishnet-recycling")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="detail-related-icon" aria-hidden>
                   <img src="/icons/projects/fishnet-recycling.svg" alt="" />
                 </div>
-                <div className="operational-related-content">
+                <div className="detail-related-content">
                   <h4>Fishnet Recycling Management System</h4>
-                  <div className="operational-related-desc-area">
-                    <div className="operational-related-tags">
+                  <div className="detail-related-desc-area">
+                    <div className="detail-related-tags">
                       <p>Community Project</p>
                       <p>Initiative-driven project</p>
                     </div>
-                    <p className="operational-related-hover-desc">
+                    <p className="detail-related-hover-desc">
                       A management system developed to support the collection,
                       tracking, and reuse of discarded fishnets through
                       community collaboration.
@@ -604,7 +604,7 @@ export default function WorksDetail({
                 </div>
                 <button
                   type="button"
-                  className="operational-related-view-link"
+                  className="detail-related-view-link"
                   onClick={() => onSelectProject?.("fishnet-recycling")}
                 >
                   View case study
@@ -613,7 +613,7 @@ export default function WorksDetail({
 
               <button
                 type="button"
-                className="operational-related-link"
+                className="detail-related-link"
                 onClick={onOpenProjects}
               >
                 View all projects
@@ -664,13 +664,9 @@ export default function WorksDetail({
             You might need this if...
           </p>
         </div>
-        <div className="operational-needs-grid" role="list">
+        <div className="needs-grid" role="list">
           {VISUAL_NEED_CARDS.map((card) => (
-            <article
-              key={card.title}
-              className="operational-need-card"
-              role="listitem"
-            >
+            <article key={card.title} className="needs-card" role="listitem">
               <h4>{card.title}</h4>
               <p>{card.description}</p>
             </article>
@@ -748,24 +744,28 @@ export default function WorksDetail({
 
         <h2>Related projects</h2>
 
-        <section className="operational-related works-detail-section-block">
+        <section className="detail-related works-detail-section-block">
           <div className="page-section">
-            <div className="operational-related-panel">
-              <article className="operational-related-card">
-                <div className="operational-related-icon" aria-hidden>
+            <div className="detail-related-panel">
+              <article
+                className="detail-related-card"
+                onClick={() => onSelectProject?.("admin-scheduling-system")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="detail-related-icon" aria-hidden>
                   <img
                     src="/icons/projects/admin-scheduling-system.svg"
                     alt=""
                   />
                 </div>
-                <div className="operational-related-content">
+                <div className="detail-related-content">
                   <h4>Admin Scheduling System Redesign</h4>
-                  <div className="operational-related-desc-area">
-                    <div className="operational-related-tags">
+                  <div className="detail-related-desc-area">
+                    <div className="detail-related-tags">
                       <p>Operational Architecture</p>
                       <p>Digital Infrastructure</p>
                     </div>
-                    <p className="operational-related-hover-desc">
+                    <p className="detail-related-hover-desc">
                       A scheduling system redesign focused on reducing cognitive
                       load for administrators working across fragmented tools.
                     </p>
@@ -773,7 +773,7 @@ export default function WorksDetail({
                 </div>
                 <button
                   type="button"
-                  className="operational-related-view-link"
+                  className="detail-related-view-link"
                   onClick={() => onSelectProject?.("admin-scheduling-system")}
                 >
                   View case study
@@ -782,7 +782,7 @@ export default function WorksDetail({
 
               <button
                 type="button"
-                className="operational-related-link"
+                className="detail-related-link"
                 onClick={onOpenProjects}
               >
                 View all projects
@@ -834,13 +834,9 @@ export default function WorksDetail({
             You might need this if...
           </p>
         </div>
-        <div className="operational-needs-grid" role="list">
+        <div className="needs-grid" role="list">
           {SYSTEM_NEED_CARDS.map((card) => (
-            <article
-              key={card.title}
-              className="operational-need-card"
-              role="listitem"
-            >
+            <article key={card.title} className="needs-card" role="listitem">
               <h4>{card.title}</h4>
               <p>{card.description}</p>
             </article>
@@ -907,21 +903,25 @@ export default function WorksDetail({
 
         <h2>Related projects</h2>
 
-        <section className="operational-related works-detail-section-block">
+        <section className="detail-related works-detail-section-block">
           <div className="page-section">
-            <div className="operational-related-panel">
-              <article className="operational-related-card">
-                <div className="operational-related-icon" aria-hidden>
+            <div className="detail-related-panel">
+              <article
+                className="detail-related-card"
+                onClick={() => onSelectProject?.("fishnet-recycling")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="detail-related-icon" aria-hidden>
                   <img src="/icons/projects/fishnet-recycling.svg" alt="" />
                 </div>
-                <div className="operational-related-content">
+                <div className="detail-related-content">
                   <h4>Fishnet Recycling Management System</h4>
-                  <div className="operational-related-desc-area">
-                    <div className="operational-related-tags">
+                  <div className="detail-related-desc-area">
+                    <div className="detail-related-tags">
                       <p>Community Project</p>
                       <p>Initiative-driven project</p>
                     </div>
-                    <p className="operational-related-hover-desc">
+                    <p className="detail-related-hover-desc">
                       A management system developed to support the collection,
                       tracking, and reuse of discarded fishnets through
                       community collaboration.
@@ -930,7 +930,7 @@ export default function WorksDetail({
                 </div>
                 <button
                   type="button"
-                  className="operational-related-view-link"
+                  className="detail-related-view-link"
                   onClick={() => onSelectProject?.("fishnet-recycling")}
                 >
                   View case study
@@ -939,7 +939,7 @@ export default function WorksDetail({
 
               <button
                 type="button"
-                className="operational-related-link"
+                className="detail-related-link"
                 onClick={onOpenProjects}
               >
                 View all projects

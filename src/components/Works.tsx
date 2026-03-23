@@ -114,7 +114,15 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
           onMouseLeave={endDrag}
         >
           {SERVICES.map((service) => (
-            <article key={service.id} className="service-card" role="listitem">
+            <article
+              key={service.id}
+              className="service-card"
+              role="listitem"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                if (!hasDragged.current) onSelect(service.id);
+              }}
+            >
               <div className="service-card-top">
                 <div className="service-card-icon" aria-hidden>
                   <img src={service.iconPath} alt="" />
@@ -128,9 +136,6 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
                 <button
                   type="button"
                   className="service-card-link"
-                  onClick={() => {
-                    if (!hasDragged.current) onSelect(service.id);
-                  }}
                   aria-label={`View details for ${service.title}`}
                 >
                   View details

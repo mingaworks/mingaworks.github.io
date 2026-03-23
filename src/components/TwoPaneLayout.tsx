@@ -465,9 +465,15 @@ export default function TwoPaneLayout() {
     return findNodeById(id, DATA.branches);
   }
 
+  const PROJECT_CRUMB_LABELS: Record<string, string> = {
+    "admin-scheduling-system": ".case.001",
+    "fishnet-recycling": ".case.002",
+  };
+
   function getLabel(id: string) {
     let raw: string;
     if (id === "base") raw = "home";
+    else if (PROJECT_CRUMB_LABELS[id]) return PROJECT_CRUMB_LABELS[id];
     else if (CUSTOM_PAGES[id]) raw = CUSTOM_PAGES[id].label;
     else if (CAROUSEL_DATA[id]) raw = CAROUSEL_DATA[id].title;
     else {

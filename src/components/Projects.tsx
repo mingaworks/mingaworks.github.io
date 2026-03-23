@@ -53,24 +53,32 @@ export default function Projects({ breadcrumbs, onSelect }: Props) {
 
       <div className="projects-list" role="list">
         {PROJECTS.map((project) => (
-          <article className="project-card" key={project.id} role="listitem">
-            <div className="project-card-icon" aria-hidden>
+          <article
+            className="detail-related-card"
+            key={project.id}
+            role="listitem"
+            onClick={() => onSelect(project.id)}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="detail-related-icon" aria-hidden>
               <img src={project.iconPath} alt="" />
             </div>
-            <div className="project-card-content">
-              <h2>{project.title}</h2>
-              <p>{project.description}</p>
-              <div className="project-card-services">
-                {project.services.map((s) => (
-                  <span key={s} className="project-card-service-tag">
-                    {s}
-                  </span>
-                ))}
+            <div className="detail-related-content">
+              <h4>{project.title}</h4>
+              <div className="detail-related-desc-area">
+                <div className="detail-related-tags">
+                  {project.services.map((s) => (
+                    <p key={s}>{s}</p>
+                  ))}
+                </div>
+                <p className="detail-related-hover-desc">
+                  {project.description}
+                </p>
               </div>
             </div>
             <button
               type="button"
-              className="project-card-link"
+              className="detail-related-view-link"
               onClick={() => onSelect(project.id)}
             >
               View case study
