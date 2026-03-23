@@ -32,7 +32,7 @@ const BASE_CHILDREN: MenuChild[] = [
 
 const WORKS_CHILDREN: MenuChild[] = [
   { id: "ops-automation", label: "Operational Architecture" },
-  { id: "product-archt", label: "Product Architecture & Launch" },
+  { id: "product-archt", label: "Product Archt & Launch" },
   { id: "visual-identity", label: "Visual Identity & UX Design" },
   { id: "system-advisory", label: "Strategic Systems Advisory" },
 ];
@@ -103,7 +103,14 @@ const Sidebar = forwardRef<HTMLElement, Props>(function Sidebar(
       }}
     >
       <div className="sidebar-brand">
-        <img src="/icons/mingaworks-border.svg" alt="Minga Works" />
+        <button
+          type="button"
+          className="sidebar-brand-btn"
+          onClick={() => onClick("base")}
+          aria-label="Go to homepage"
+        >
+          <img src="/icons/mingaworks-border.svg" alt="Minga Works" />
+        </button>
       </div>
       <nav aria-label="Main menu">
         <ul className="sidebar-menu">

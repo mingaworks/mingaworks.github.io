@@ -80,6 +80,29 @@
   margin-top: 4rem;
 }
 
+.sidebar-brand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  overflow: visible !important;
+  opacity: 0.85;
+  transition: opacity var(--motion-fast);
+}
+
+.sidebar-brand-btn:hover {
+  opacity: 1;
+  background: transparent !important;
+  color: inherit !important;
+  border-color: transparent !important;
+}
+
 .sidebar-brand img {
   display: block;
   width: var(--sidebar-brand-size);
@@ -132,13 +155,23 @@
   justify-content: center;
   transform-origin: center;
   opacity: 0;
+  filter: invert(56%) sepia(17%) saturate(700%) hue-rotate(183deg)
+    brightness(95%) contrast(85%);
   transition:
     opacity 200ms ease,
-    transform 260ms ease;
+    transform 260ms ease,
+    filter var(--motion-fast);
 }
 
 .menu-item:hover .collapse-icon {
   opacity: 1;
+  filter: invert(9%) sepia(97%) saturate(5000%) hue-rotate(235deg)
+    brightness(80%) contrast(120%);
+}
+
+.menu-item:has(button.active) .collapse-icon {
+  filter: invert(9%) sepia(97%) saturate(5000%) hue-rotate(235deg)
+    brightness(80%) contrast(120%);
 }
 
 .menu-item.open .collapse-icon {
@@ -187,14 +220,11 @@
   display: none !important;
 }
 
-.sidebar.collapsed .menu-item.open .collapse-icon {
-  filter: brightness(0.6);
-}
-
 .sidebar button {
   display: flex;
   align-items: center;
   width: 100%;
+  height: auto;
   border: none;
   background: transparent;
   text-align: center;
@@ -213,6 +243,12 @@
   text-align: center;
   overflow: visible;
   gap: 0;
+  padding-right: 0.9rem;
+}
+
+.menu-item:hover .collapse-toggle,
+.menu-item:has(button.active) .collapse-toggle {
+  color: var(--text-primary);
 }
 
 .submenu-icon {
@@ -237,6 +273,7 @@
   overflow: hidden;
   font-weight: 500;
   line-height: 160%;
+  letter-spacing: 0;
   transition:
     opacity 160ms ease,
     width 160ms ease;
@@ -251,6 +288,7 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   font-size: 0.85em;
+  line-height: 1.25;
   text-overflow: ellipsis;
 }
 
