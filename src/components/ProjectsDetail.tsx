@@ -136,31 +136,33 @@ export default function ProjectsDetail({
             </div>
           </div>
 
-          <h3>
-            Before State
-            <button
-              type="button"
-              className="carousel-eye-btn"
+          <div className="content-block-group">
+            <h3>
+              Before State
+              <button
+                type="button"
+                className="carousel-eye-btn"
+                onClick={() => onOpenCarousel?.("carousel-before-state")}
+                aria-label="View Before State carousel"
+              >
+                <img src="/icons/eye.svg" alt="" />
+              </button>
+            </h3>
+            <div
+              className="projects-image-block projects-image-block-clickable"
               onClick={() => onOpenCarousel?.("carousel-before-state")}
-              aria-label="View Before State carousel"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ")
+                  onOpenCarousel?.("carousel-before-state");
+              }}
             >
-              <img src="/icons/eye.svg" alt="" />
-            </button>
-          </h3>
-          <div
-            className="projects-image-block projects-image-block-clickable"
-            onClick={() => onOpenCarousel?.("carousel-before-state")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ")
-                onOpenCarousel?.("carousel-before-state");
-            }}
-          >
-            <img
-              src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780578/brainstorm-before-state_sar1km.png"
-              alt="Before state of manual scheduling process"
-            />
+              <img
+                src="https://res.cloudinary.com/dp1lnbar5/image/upload/v1772780578/brainstorm-before-state_sar1km.png"
+                alt="Before state of manual scheduling process"
+              />
+            </div>
           </div>
         </div>
 
@@ -169,8 +171,8 @@ export default function ProjectsDetail({
         <div className="page-section projects-detail-section">
           <div className="projects-accent-panel">
             <p className="projects-emphasis-text">
-              The existing workflow was not designed as a system. It evolved as
-              a collection of tools.
+              The existing workflow was not designed as a system. <br />
+              It evolved as a collection of tools.
             </p>
 
             <div className="projects-two-col projects-two-col-tight">
@@ -219,7 +221,7 @@ export default function ProjectsDetail({
             />
           </div>
 
-          <h3>Design Goals</h3>
+          <h3 style={{ marginBottom: "2rem" }}>Design Goals</h3>
           <p className="projects-emphasis-text">
             The goal was not to add features.
             <br /> It was to remove fragility.

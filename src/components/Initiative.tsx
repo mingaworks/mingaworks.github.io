@@ -30,8 +30,7 @@ export default function Initiative({ breadcrumbs, onJoinClick }: Props) {
 
       <div className="initiative-columns">
         <section>
-          <h2>What we focus on</h2>
-          <p className="root-lead-p">What this initiative supports</p>
+          <h2>What this initiative supports</h2>
           <p>
             The initiative brings together work that is exploratory,
             community-driven, and value-led. These projects are often slower,
