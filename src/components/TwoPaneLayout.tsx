@@ -347,6 +347,7 @@ export default function TwoPaneLayout() {
   const [contactDirty, setContactDirty] = useState(false);
   const slotARef = useRef<HTMLDivElement>(null);
   const slotBRef = useRef<HTMLDivElement>(null);
+  const savedScrollRef = useRef<{ id: string; scrollTop: number } | null>(null);
 
   useEffect(() => {
     function onPopState() {
@@ -465,6 +466,15 @@ export default function TwoPaneLayout() {
   useEffect(() => {
     if (slotBRef.current) slotBRef.current.scrollTop = 0;
   }, [slotBId]);
+
+  // Restore the saved slot-b scroll position when that content moves into slot-a.
+  useLayoutEffect(() => {
+    const saved = savedScrollRef.current;
+    savedScrollRef.current = null; // always consume, prevents stale restores
+    if (saved && saved.id === slotAId && slotARef.current) {
+      slotARef.current.scrollTop = saved.scrollTop;
+    }
+  }, [slotAId]);
 
   // Assign IDs + click handlers to sticky section headers; scroll to URL hash on navigation.
   useEffect(() => {
@@ -811,6 +821,14 @@ export default function TwoPaneLayout() {
           }
           onOpenCarousel={(carouselId) =>
             attemptNavigate(() => {
+              // When the detail is in slot-b it will be moved to slot-a;
+              // save its current scroll depth so we can restore it there.
+              if (slot === "b" && slotBRef.current) {
+                savedScrollRef.current = {
+                  id,
+                  scrollTop: slotBRef.current.scrollTop,
+                };
+              }
               setBreadcrumb((b) => {
                 const last = b[b.length - 1];
                 if (CAROUSEL_IDS.has(last)) {
@@ -908,10 +926,11 @@ export default function TwoPaneLayout() {
   const crumbsB = getBreadcrumbItemsFor(slotBId);
   const variantB = getBreadcrumbVariantFor(slotBId);
   const crumbsBDisplay = crumbsB.length > 2 ? crumbsB.slice(-2) : crumbsB;
+  const crumbsBOffset = crumbsB.length - crumbsBDisplay.length;
   const breadcrumbsB = crumbsBDisplay.length ? (
     <Breadcrumbs
       items={crumbsBDisplay}
-      onClick={handleBreadcrumbClick}
+      onClick={(i) => handleBreadcrumbClick(i + crumbsBOffset)}
       variant={variantB}
     />
   ) : null;
@@ -937,7 +956,11 @@ export default function TwoPaneLayout() {
     headerA.style.minHeight = `${max}px`;
     headerB.style.minHeight = `${max}px`;
 
-    // set CSS variable for subsequent sticky h2 offsets
+    // set CSS variable for subsequent sticky h2 offsets in both slots
+    const stickyParentA = slotA.querySelector<HTMLElement>(".sticky-page");
+    if (stickyParentA) {
+      stickyParentA.style.setProperty("--page-header-h", `${max}px`);
+    }
     const stickyParentB = slotB.querySelector<HTMLElement>(".sticky-page");
     if (stickyParentB) {
       stickyParentB.style.setProperty("--page-header-h", `${max}px`);

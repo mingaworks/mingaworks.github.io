@@ -504,6 +504,10 @@
   overflow: auto;
 }
 
+.two-pane[data-pane="split"] .slot-a {
+  box-shadow: 0px 0px 10px 2px rgba(0, 20, 168, 0.15) inset;
+}
+
 .two-pane .slot-b {
   width: min(100%, var(--slot-b-fixed-width));
   flex: 0 0 min(100%, var(--slot-b-fixed-width));
@@ -524,6 +528,7 @@
   opacity: 0;
   pointer-events: none;
   overflow: hidden;
+  transform: translateX(24px);
 }
 
 .two-pane .children-list {
@@ -1037,6 +1042,17 @@
   margin-top: 1rem;
 }
 
+/* Collapse grids to single column when project detail is in the narrow slot-a */
+.two-pane[data-pane="split"] .slot-a .projects-meta-grid,
+.two-pane[data-pane="split"] .slot-a .projects-two-col,
+.two-pane[data-pane="split"] .slot-a .projects-decisions-grid {
+  grid-template-columns: 1fr;
+}
+
+.two-pane[data-pane="split"] .slot-a .projects-right-column {
+  text-align: left;
+}
+
 .projects-right-column {
   text-align: right;
   font-size: 1.25rem;
@@ -1191,6 +1207,37 @@
 
 .projects-image-block-clickable {
   cursor: pointer;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease;
+}
+
+.projects-image-block-clickable:hover {
+  transform: scale(1.015);
+  opacity: 0.9;
+}
+
+.projects-image-block-clickable:active {
+  transform: scale(0.985);
+  opacity: 0.8;
+  transition-duration: 80ms;
+}
+
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* All slot-b content slides in from the right */
+.slot-b .sticky-page {
+  animation: panel-enter 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .carousel-page {
@@ -1209,7 +1256,7 @@
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   border-radius: 29px;
-  box-shadow: -20px 0px 20px 0px rgba(29, 33, 62, 0.25) inset;
+  box-shadow: -8px 0px 8px 0px rgba(29, 33, 62, 0.25) inset;
 }
 
 .carousel-slide {
@@ -2219,6 +2266,25 @@
     width: 100%;
     left: 0;
     top: 0;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot-b .sticky-page,
+  .carousel-page {
+    animation: none;
+  }
+
+  .projects-image-block-clickable,
+  .projects-image-block-clickable:hover,
+  .projects-image-block-clickable:active {
+    transform: none;
+    transition: none;
+  }
+
+  .two-pane[data-pane="single"] .slot-b,
+  .two-pane .slot-b[aria-hidden="true"] {
     transform: none;
   }
 }
