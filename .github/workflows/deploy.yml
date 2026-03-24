@@ -29,6 +29,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_CONTACTS_SCRIPT_ID: ${{ secrets.CONTACTS_SCRIPT_ID }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

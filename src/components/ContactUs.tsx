@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 function getScriptId() {
-  const devId = import.meta.env.VITE_CONTACTS_SCRIPT_ID as string | undefined;
-  const prodId =
-    (import.meta.env.CONTACTS_SCRIPT_ID as string | undefined) || undefined;
-  if (import.meta.env.MODE === "development") return devId || prodId;
-  return prodId || devId;
+  return import.meta.env.VITE_CONTACTS_SCRIPT_ID as string | undefined;
 }
 
 export default function ContactUs({
