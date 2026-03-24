@@ -864,7 +864,7 @@ export default function TwoPaneLayout() {
           }
           onContact={() =>
             attemptNavigate(() => {
-              setBreadcrumb(["base", "contact"]);
+              setBreadcrumb((prev) => [...prev, "contact"]);
             })
           }
         />
