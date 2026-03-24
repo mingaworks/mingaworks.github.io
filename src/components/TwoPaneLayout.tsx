@@ -140,6 +140,15 @@ function findNodeById(id: string, nodes?: Node[]): Node | undefined {
   return undefined;
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function normalizePath(pathname: string): string {
   if (!pathname) return "/";
   const trimmed = pathname.replace(/\/+$/, "");
@@ -456,6 +465,107 @@ export default function TwoPaneLayout() {
   useEffect(() => {
     if (slotBRef.current) slotBRef.current.scrollTop = 0;
   }, [slotBId]);
+
+  // Assign IDs + click handlers to sticky section headers; scroll to URL hash on navigation.
+  useEffect(() => {
+    const slotEls = [slotARef.current, slotBRef.current].filter(
+      (el): el is HTMLDivElement => el !== null,
+    );
+
+    // Scroll a slot so that `h2` is just below the sticky page-header stack.
+    // Uses the next sibling element as the scroll anchor — unlike the sticky h2
+    // itself, a normal sibling always reports its true scrollable position via
+    // getBoundingClientRect(), making this reliable for both scrolling up and down.
+    function scrollToH2(h2: HTMLElement) {
+      const slot = h2.closest<HTMLElement>(".slot");
+      if (!slot) return;
+      const stickyTop = parseFloat(window.getComputedStyle(h2).top) || 0;
+      const h2Height = h2.getBoundingClientRect().height;
+      const anchor = (h2.nextElementSibling as HTMLElement | null) ?? h2;
+      const slotRect = slot.getBoundingClientRect();
+      const anchorRect = anchor.getBoundingClientRect();
+      const currentAnchorOffset = anchorRect.top - slotRect.top;
+      const targetAnchorOffset =
+        anchor === h2 ? stickyTop : stickyTop + h2Height;
+      const delta = currentAnchorOffset - targetAnchorOffset;
+      slot.scrollTo({ top: slot.scrollTop + delta, behavior: "smooth" });
+    }
+
+    const cleanups: Array<() => void> = [];
+
+    // Assign IDs to section h2s now so clicks and hash links both work.
+    for (const slot of slotEls) {
+      for (const h2 of slot.querySelectorAll<HTMLElement>(
+        ".sticky-page > h2",
+      )) {
+        if (!h2.id) {
+          const slug = slugify(h2.textContent ?? "");
+          if (slug) h2.id = slug;
+        }
+      }
+      // Also assign IDs to page-header h2s so hash links reach them too.
+      for (const h2 of slot.querySelectorAll<HTMLElement>(
+        ".sticky-page > .page-header > h2",
+      )) {
+        if (!h2.id) {
+          const slug = slugify(h2.textContent ?? "");
+          if (slug) h2.id = slug;
+        }
+      }
+    }
+
+    // Single delegated listener per slot handles both kinds of sticky h2.
+    for (const slot of slotEls) {
+      const handler = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        // Page-header h2: scroll to the very top.
+        const pageHeaderH2 = target.closest<HTMLElement>(
+          ".sticky-page > .page-header > h2",
+        );
+        if (pageHeaderH2) {
+          const s = pageHeaderH2.closest<HTMLElement>(".slot");
+          if (s) s.scrollTo({ top: 0, behavior: "smooth" });
+          if (pageHeaderH2.id) {
+            window.history.replaceState(
+              null,
+              "",
+              `${window.location.pathname}#${pageHeaderH2.id}`,
+            );
+          }
+          return;
+        }
+        // Section h2: scroll to that section.
+        const sectionH2 = target.closest<HTMLElement>(".sticky-page > h2");
+        if (sectionH2) {
+          if (sectionH2.id) {
+            window.history.replaceState(
+              null,
+              "",
+              `${window.location.pathname}#${sectionH2.id}`,
+            );
+          }
+          scrollToH2(sectionH2);
+        }
+      };
+      slot.addEventListener("click", handler);
+      cleanups.push(() => slot.removeEventListener("click", handler));
+    }
+
+    // Scroll to URL hash if present
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const escaped = CSS.escape(hash);
+      for (const slot of slotEls) {
+        const target = slot.querySelector<HTMLElement>(`#${escaped}`);
+        if (target) {
+          requestAnimationFrame(() => scrollToH2(target));
+          break;
+        }
+      }
+    }
+
+    return () => cleanups.forEach((fn) => fn());
+  }, [slotAId, slotBId]);
 
   function getNode(id: string | null) {
     if (!id) return null;
