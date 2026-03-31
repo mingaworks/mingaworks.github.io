@@ -1032,6 +1032,14 @@
   color: var(--text-inverted);
 }
 
+.design-goals-panel {
+  margin-bottom: 3rem;
+}
+
+.sticky-page > .page-section .design-goals-panel p {
+  margin: 0;
+}
+
 .projects-accent-panel ul,
 .projects-two-col ul {
   margin: 0.35rem 0 0;

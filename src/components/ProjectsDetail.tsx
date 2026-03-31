@@ -227,7 +227,7 @@ export default function ProjectsDetail({
             <br /> It was to remove fragility.
           </p>
 
-          <div className="projects-two-col">
+          <div className="projects-two-col design-goals-panel">
             <div>
               <p className="projects-sub-emphasis">We designed for:</p>
               <ul>
