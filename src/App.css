@@ -1102,11 +1102,18 @@
   margin-top: 1rem;
 }
 
-/* Collapse grids to single column when project detail is in the narrow slot-a */
 .two-pane[data-pane="split"] .slot-a .projects-meta-grid,
 .two-pane[data-pane="split"] .slot-a .projects-two-col,
 .two-pane[data-pane="split"] .slot-a .projects-decisions-grid {
   grid-template-columns: 1fr;
+}
+
+.two-pane[data-pane="split"] .slot-a .needs-grid {
+  flex-direction: column;
+}
+
+.two-pane[data-pane="split"] .slot-a .needs-card {
+  flex: 1 1 100%;
 }
 
 .two-pane[data-pane="split"] .slot-a .projects-right-column {
@@ -1635,7 +1642,6 @@
 .operational-how-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
 }
 
 .operational-steps {
