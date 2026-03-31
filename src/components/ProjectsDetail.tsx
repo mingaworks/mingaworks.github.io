@@ -441,11 +441,289 @@ export default function ProjectsDetail({
         </div>
 
         <div className="page-section projects-detail-section">
-          <h3>Case Study in Progress</h3>
-          <p>
-            This inner page is being prepared and will be published with the
-            same format soon.
+          <h3>Operational UX Case Study</h3>
+
+          <div className="projects-meta-grid">
+            <div>
+              <p className="projects-meta-label">Duration:</p>
+              <p>1 week build</p>
+
+              <p className="projects-meta-label">Role:</p>
+              <p>
+                UX Design, Product Thinking, Field Observation, Rapid Iteration
+                <br />
+                Collaboration with Developer
+              </p>
+            </div>
+
+            <div>
+              <p className="projects-meta-label">Context:</p>
+              <p>
+                Volunteer-based recycling initiative operating in a physical
+                environment, with rotating users, low training time, and real
+                financial transactions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Background</h2>
+
+        <div className="page-section projects-detail-section">
+          <div className="projects-accent-panel">
+            <p>
+              We were volunteering at a coastal fishnet recycling initiative.
+              The system had just been introduced to encourage fishermen to
+              return used nets in exchange for payment after reaching a weight
+              threshold.
+            </p>
+            <p className="projects-emphasis-text">
+              The operation was already active, but the system was not.
+            </p>
+
+            <div className="projects-two-col projects-two-col-tight">
+              <div>
+                <ul>
+                  <li>No structured tracking for drop-offs or accumulation</li>
+                  <li>No reliable payment tracking</li>
+                  <li>Multiple volunteers rotating every ~1 month</li>
+                  <li>Real money involved, requiring accuracy</li>
+                </ul>
+              </div>
+
+              <div className="projects-right-column">
+                <p className="projects-emphasis-text">
+                  The system "worked" only as long as people remembered what
+                  happened.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="content-block-group">
+            <h3>Before State</h3>
+            <ul>
+              <li>Tracking relied on paper or memory</li>
+              <li>Information was fragmented across people</li>
+              <li>No clear ownership of data</li>
+              <li>No consistent way to verify payments</li>
+            </ul>
+            <p className="projects-emphasis-text">
+              The operation depended on individuals, not on a system.
+            </p>
+
+            <div className="projects-image-block">
+              {/* placeholder — before state visual */}
+            </div>
+          </div>
+        </div>
+
+        <h2>The Problem</h2>
+
+        <div className="page-section projects-detail-section">
+          <div className="projects-accent-panel">
+            <p className="projects-emphasis-text">
+              The workflow was not designed as a system. <br />
+              It was an improvised process under pressure.
+            </p>
+
+            <div className="projects-two-col projects-two-col-tight">
+              <div>
+                <p className="projects-sub-emphasis">Key Issues:</p>
+                <ul>
+                  <li>Drop-offs were not reliably recorded</li>
+                  <li>Accumulation was not clearly visible</li>
+                  <li>Payment decisions depended on interpretation</li>
+                  <li>Errors could not be traced or corrected</li>
+                  <li>New volunteers had no onboarding structure</li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="projects-sub-emphasis">Core Problem:</p>
+                <p>
+                  One real-world event, no consistent representation, no
+                  enforcement.
+                </p>
+                <p>This created risk:</p>
+                <ul>
+                  <li>Financial mistakes</li>
+                  <li>Loss of trust with fishermen</li>
+                  <li>Increasing confusion as volunteers rotated</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 style={{ marginBottom: "2rem" }}>Design Goal</h3>
+          <p className="projects-emphasis-text">
+            The goal was not to build a complex product.
+            <br /> It was to stabilize a real-world operation immediately.
           </p>
+
+          <div className="projects-two-col design-goals-panel">
+            <div>
+              <p className="projects-sub-emphasis">We designed for:</p>
+              <ul>
+                <li>Clear tracking of each fisherman</li>
+                <li>Reliable accumulation logic</li>
+                <li>Explicit payment confirmation</li>
+                <li>Usability without training</li>
+                <li>Fast onboarding for new volunteers</li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="projects-sub-emphasis">Explicit non-goals:</p>
+              <ul>
+                <li>No long research phase</li>
+                <li>No complex infrastructure</li>
+                <li>No over-engineering beyond immediate needs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>Solution Overview</h2>
+
+        <div className="page-section projects-detail-section">
+          <div className="projects-accent-panel">
+            <h3>MVP: System First, Then Interface</h3>
+            <p>
+              Due to urgency, we worked directly in the field with the
+              developer.
+            </p>
+            <p>
+              We observed real usage, discussed constraints (devices,
+              connectivity, behavior), and built the first system on top of
+              Google Sheets and scripts.
+            </p>
+
+            <div className="projects-two-col projects-two-col-tight">
+              <div>
+                <p className="projects-sub-emphasis">Core Capabilities:</p>
+                <ul>
+                  <li>Fisherman registration</li>
+                  <li>Drop-off logging</li>
+                  <li>Automatic accumulation tracking</li>
+                  <li>Threshold-based payment calculation</li>
+                </ul>
+              </div>
+
+              <div className="projects-right-column">
+                <p>The system introduced structure.</p>
+                <p className="projects-emphasis-text">
+                  But structure alone was not enough.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3>UX Breakdown in Real Usage</h3>
+          <p>Once used in the field:</p>
+          <ul>
+            <li>Users had to think in system terms, not human terms</li>
+            <li>Too many actions competed for attention</li>
+            <li>Payment confirmation was not clearly emphasized</li>
+            <li>Mistakes had no recovery path</li>
+            <li>New users had no guidance</li>
+          </ul>
+          <p className="projects-emphasis-text">
+            The logic worked. The interaction failed.
+          </p>
+
+          <h3>UX Strategy</h3>
+          <p>
+            We did not rebuild the system. <br />
+            We aligned it with real-world behavior.
+          </p>
+          <ul>
+            <li>Fisherman-centered interaction, not system-centered</li>
+            <li>Separate entry, review, and confirmation clearly</li>
+            <li>Make critical actions explicit</li>
+            <li>Reduce cognitive load for short-term users</li>
+            <li>Prevent errors instead of reacting to them</li>
+          </ul>
+
+          <h3>Key UX Decisions</h3>
+          <div className="projects-decisions-grid">
+            <article>
+              <p className="projects-decision-title">
+                Interaction anchored on a single fisherman
+              </p>
+              <p>All actions grouped around a person, not system states.</p>
+            </article>
+            <article>
+              <p className="projects-decision-title">
+                Structured flow instead of mixed actions
+              </p>
+              <p>Entry → accumulation → confirmation.</p>
+            </article>
+            <article>
+              <p className="projects-decision-title">
+                Payment requires explicit confirmation
+              </p>
+              <p>No implicit or hidden actions.</p>
+            </article>
+            <article>
+              <p className="projects-decision-title">
+                Non-essential data removed from main flow
+              </p>
+              <p>Only relevant information at decision points.</p>
+            </article>
+          </div>
+
+          <h3>Outcome</h3>
+          <div className="projects-two-col projects-two-col-tight">
+            <div>
+              <p>Within one week:</p>
+              <ul>
+                <li>MVP evolved into a usable operational system</li>
+                <li>Volunteers could onboard themselves quickly</li>
+                <li>Payment errors were reduced</li>
+                <li>The system supported trust and accountability</li>
+              </ul>
+            </div>
+
+            <div className="projects-right-column projects-bottom-callout">
+              <p>
+                The operation no longer depended on memory. <br />
+                It depended on structure.
+              </p>
+            </div>
+          </div>
+
+          <h3>After Workflow</h3>
+          <ul>
+            <li>Drop-offs recorded immediately</li>
+            <li>Accumulation visible per fisherman</li>
+            <li>Payments confirmed with clear actions</li>
+            <li>New volunteers adapt without guidance</li>
+          </ul>
+          <div className="projects-image-block">
+            {/* placeholder — after workflow visual */}
+          </div>
+
+          <div className="projects-why-panel">
+            <p className="projects-why-title">Why This Matters</p>
+            <p>
+              When systems depend on memory,
+              <span className="projects-why-emphasis">they fail silently.</span>
+            </p>
+            <p>This project replaced:</p>
+            <ul>
+              <li>Interpretation → with structure</li>
+              <li>Memory → with visibility</li>
+              <li>Assumptions → with explicit actions</li>
+            </ul>
+            <p className="projects-why-subtle">
+              It demonstrates a core principle:
+              <span>
+                In operational environments, speed comes from clarity, <br />{" "}
+                not complexity.
+              </span>
+            </p>
+          </div>
         </div>
       </section>
     );
