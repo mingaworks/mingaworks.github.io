@@ -1,3 +1,49 @@
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 100.96deg;
+}
+
+.glassy {
+  position: relative;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow:
+    inset 0px -2px 4px rgba(0, 0, 0, 0.2),
+    inset 0px 2px 4px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  --border-angle: 100.96deg;
+  transition:
+    background 240ms ease,
+    box-shadow 240ms ease,
+    --border-angle 600ms ease;
+}
+
+.glassy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 0.5px;
+  background: linear-gradient(
+    var(--border-angle),
+    rgba(255, 255, 255, 0.05) 0%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glassy:hover {
+  --border-angle: 260deg;
+}
+
 .cta {
   background-color: rgba(255, 255, 255, 0.02);
   border: none;
@@ -1363,46 +1409,11 @@
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.02);
-  position: relative;
-  box-shadow:
-    inset 0px -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0px 2px 4px rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
   color: var(--text-inverted);
   height: 350px;
   width: 350px;
   flex-shrink: 0;
   overflow: hidden;
-  transition:
-    background 240ms ease,
-    box-shadow 240ms ease;
-}
-
-.service-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 0.5px;
-  background: linear-gradient(
-    100.96deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    #ffffff 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .service-card-top {
@@ -1706,39 +1717,8 @@
   width: min(720px, 100%);
   display: flex;
   align-items: center;
-  position: relative;
   gap: 0.2rem;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.02);
-  box-shadow:
-    inset 0px -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0px 2px 4px rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
   padding: clamp(3rem, 4rem, 5rem) clamp(1.5rem, 2rem, 2.5rem);
-  transition:
-    background 240ms ease,
-    box-shadow 240ms ease;
-}
-
-.detail-related-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 0.5px;
-  background: linear-gradient(
-    100.96deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    #ffffff 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .detail-related-icon {
@@ -1823,8 +1803,10 @@
   bottom: clamp(1rem, 2vw, 1.5rem);
   right: clamp(1.5rem, 2.5vw, 2.5rem);
   border: none;
-  background: transparent;
-  color: #fff;
+  background: linear-gradient(to right, transparent 0%, #fff 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 600;
   font-size: 0.88rem;
   padding: 0;
@@ -1840,15 +1822,11 @@
 .detail-related-card:hover .detail-related-view-link {
   opacity: 1;
   transform: translateY(0);
-  background: linear-gradient(to right, transparent 0%, #fff 50%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .detail-related-view-link:hover {
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.8);
 }
 
 .detail-related-link {

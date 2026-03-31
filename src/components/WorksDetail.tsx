@@ -446,7 +446,7 @@ export default function WorksDetail({
           <div className="page-section">
             <div className="detail-related-panel">
               <article
-                className="detail-related-card"
+                className="glassy detail-related-card"
                 onClick={() => onSelectProject?.("admin-scheduling-system")}
                 style={{ cursor: "pointer" }}
               >
@@ -581,7 +581,7 @@ export default function WorksDetail({
           <div className="page-section">
             <div className="detail-related-panel">
               <article
-                className="detail-related-card"
+                className="glassy detail-related-card"
                 onClick={() => onSelectProject?.("fishnet-recycling")}
                 style={{ cursor: "pointer" }}
               >
@@ -748,7 +748,7 @@ export default function WorksDetail({
           <div className="page-section">
             <div className="detail-related-panel">
               <article
-                className="detail-related-card"
+                className="glassy detail-related-card"
                 onClick={() => onSelectProject?.("admin-scheduling-system")}
                 style={{ cursor: "pointer" }}
               >
@@ -907,7 +907,7 @@ export default function WorksDetail({
           <div className="page-section">
             <div className="detail-related-panel">
               <article
-                className="detail-related-card"
+                className="glassy detail-related-card"
                 onClick={() => onSelectProject?.("fishnet-recycling")}
                 style={{ cursor: "pointer" }}
               >

@@ -54,7 +54,7 @@ export default function Projects({ breadcrumbs, onSelect }: Props) {
       <div className="projects-list" role="list">
         {PROJECTS.map((project) => (
           <article
-            className="detail-related-card"
+            className="glassy detail-related-card"
             key={project.id}
             role="listitem"
             onClick={() => onSelect(project.id)}

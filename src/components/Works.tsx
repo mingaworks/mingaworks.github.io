@@ -116,7 +116,7 @@ export default function Works({ breadcrumbs, onSelect }: Props) {
           {SERVICES.map((service) => (
             <article
               key={service.id}
-              className="service-card"
+              className="glassy service-card"
               role="listitem"
               style={{ cursor: "pointer" }}
               onClick={() => {
