@@ -331,7 +331,7 @@
   --breadcrumb-close-right: var(--page-pad-inline);
   min-height: var(--sticky-row-h);
   gap: 8px;
-  padding: 0.2rem var(--page-pad-inline);
+  padding: 0 var(--page-pad-inline);
   padding-right: calc(var(--page-pad-inline) + 44px);
 }
 
@@ -706,7 +706,6 @@
 }
 
 .floating-breadcrumb .crumb {
-  /* display: inline-flex; */
   align-items: center;
   justify-content: center;
   background: transparent;
