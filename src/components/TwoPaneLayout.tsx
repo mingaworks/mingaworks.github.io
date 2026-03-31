@@ -347,7 +347,11 @@ export default function TwoPaneLayout() {
   const [contactDirty, setContactDirty] = useState(false);
   const slotARef = useRef<HTMLDivElement>(null);
   const slotBRef = useRef<HTMLDivElement>(null);
-  const savedScrollRef = useRef<{ id: string; scrollTop: number } | null>(null);
+  const savedScrollRef = useRef<{
+    id: string;
+    scrollTop: number;
+    anchorH3Text?: string;
+  } | null>(null);
 
   useEffect(() => {
     function onPopState() {
@@ -472,7 +476,27 @@ export default function TwoPaneLayout() {
     const saved = savedScrollRef.current;
     savedScrollRef.current = null; // always consume, prevents stale restores
     if (saved && saved.id === slotAId && slotARef.current) {
-      slotARef.current.scrollTop = saved.scrollTop;
+      if (saved.scrollTop === -1) {
+        slotARef.current.scrollTop = slotARef.current.scrollHeight;
+      } else if (saved.anchorH3Text) {
+        const slot = slotARef.current;
+        const h3s = Array.from(slot.querySelectorAll<HTMLElement>("h3"));
+        const targetH3 = h3s.find(
+          (h3) =>
+            h3.textContent?.replace(/\s+/g, " ").trim() === saved.anchorH3Text,
+        );
+        if (targetH3) {
+          const pageHeader = slot.querySelector<HTMLElement>(".page-header");
+          const headerHeight = pageHeader
+            ? pageHeader.getBoundingClientRect().height
+            : 0;
+          const slotRect = slot.getBoundingClientRect();
+          const h3Rect = targetH3.getBoundingClientRect();
+          slot.scrollTop += h3Rect.top - slotRect.top - headerHeight;
+        }
+      } else {
+        slotARef.current.scrollTop = saved.scrollTop;
+      }
     }
   }, [slotAId]);
 
@@ -822,11 +846,12 @@ export default function TwoPaneLayout() {
           onOpenCarousel={(carouselId) =>
             attemptNavigate(() => {
               // When the detail is in slot-b it will be moved to slot-a;
-              // save its current scroll depth so we can restore it there.
+              // find the h3 associated with the carousel and anchor to it.
               if (slot === "b" && slotBRef.current) {
                 savedScrollRef.current = {
                   id,
-                  scrollTop: slotBRef.current.scrollTop,
+                  scrollTop: 0,
+                  anchorH3Text: CAROUSEL_DATA[carouselId]?.title,
                 };
               }
               setBreadcrumb((b) => {
@@ -864,6 +889,7 @@ export default function TwoPaneLayout() {
           }
           onContact={() =>
             attemptNavigate(() => {
+              savedScrollRef.current = { id, scrollTop: -1 };
               setBreadcrumb((prev) => [...prev, "contact"]);
             })
           }
