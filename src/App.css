@@ -399,7 +399,7 @@
 
 .home-section {
   padding: 0 4vw;
-  margin-top: 1.25rem;
+  margin-top: 4rem;
   margin-bottom: 1rem;
 }
 
@@ -925,7 +925,7 @@
 }
 
 .root-lead-p {
-  margin-bottom: 4rem;
+  margin: 4rem 0;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 130%;
@@ -974,7 +974,7 @@
 }
 
 .projects-detail-section > h3 {
-  margin: 2rem 0 1rem;
+  margin: 4rem 0 1rem;
   color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 500;
@@ -1304,6 +1304,7 @@
 
 .works-lead {
   font-size: 1.4rem;
+  margin-top: 4rem;
   line-height: 1.6;
 }
 
