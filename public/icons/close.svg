@@ -10,10 +10,10 @@
             <g clip-path="url(#_clip1)">
                 <g transform="matrix(12.249406,0,0,12.475582,22388.089093,-14231.528729)">
                     <g transform="matrix(14.85,0,0,10.5,-2168.357777,1114.160368)">
-                        <path d="M17.657,17.657L6.343,6.343" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:2px;"/>
+                        <path d="M17.657,17.657L6.343,6.343" style="fill:none;fill-rule:nonzero;stroke:rgb(0,20,168);stroke-width:2px;"/>
                     </g>
                     <g transform="matrix(14.85,0,0,10.5,-2168.357777,1114.160368)">
-                        <path d="M17.657,6.343L6.343,17.657" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:2px;"/>
+                        <path d="M17.657,6.343L6.343,17.657" style="fill:none;fill-rule:nonzero;stroke:rgb(0,20,168);stroke-width:2px;"/>
                     </g>
                 </g>
             </g>

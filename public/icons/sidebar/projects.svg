@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%" height="100%" viewBox="0 0 237 237" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><rect id="Artboard2" x="0" y="0" width="236.22" height="236.22" style="fill:none;"/><path d="M202.319,12.849l-168.418,0c-10.526,0 -21.052,9.474 -21.052,21.052l0,31.684c0,7.579 4.526,14.105 10.526,17.789l0,118.945c0,11.579 11.579,21.052 21.052,21.052l147.366,0c9.474,0 21.052,-9.474 21.052,-21.052l0,-118.945c6,-3.684 10.526,-10.21 10.526,-17.789l0,-31.684c0,-11.579 -10.526,-21.052 -21.052,-21.052Zm-10.526,189.47l-147.366,0l0,-115.787l147.366,0l0,115.787Zm10.526,-136.84l-168.418,0l0,-31.578l168.418,0l0,31.578Z" style="fill-rule:nonzero;"/><rect x="86.532" y="118.11" width="63.157" height="21.052" style="fill-rule:nonzero;"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 237 237" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-664.803733,-1484.716491)">
+        <g id="Artboard2" transform="matrix(0.06734,0,0,0.095238,916.931308,1484.716491)">
+            <rect x="-3744.094" y="0" width="3507.874" height="2480.315" style="fill:none;"/>
+            <g transform="matrix(208.417338,0,0,147.365794,-3865.91352,-86.134669)">
+                <path d="M15,1.5L3,1.5C2.25,1.5 1.5,2.175 1.5,3L1.5,5.258C1.5,5.798 1.823,6.263 2.25,6.525L2.25,15C2.25,15.825 3.075,16.5 3.75,16.5L14.25,16.5C14.925,16.5 15.75,15.825 15.75,15L15.75,6.525C16.177,6.263 16.5,5.798 16.5,5.258L16.5,3C16.5,2.175 15.75,1.5 15,1.5ZM14.25,15L3.75,15L3.75,6.75L14.25,6.75L14.25,15ZM15,5.25L3,5.25L3,3L15,3L15,5.25Z" style="fill:rgb(96,130,182);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(208.417338,0,0,147.365794,-3865.91352,-86.134669)">
+                <rect x="6.75" y="9" width="4.5" height="1.5" style="fill:rgb(96,130,182);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

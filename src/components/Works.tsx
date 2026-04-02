@@ -18,28 +18,28 @@ const SERVICES: ServiceCard[] = [
     title: "Operational Architecture",
     description:
       "We look at how your team actually works, find where time and energy leak out, and build automated systems to close those gaps. Less friction. More output.",
-    iconPath: "/icons/consultancy/digital-tools-automation.svg",
+    iconPath: "/icons/services/operational-architecture.svg",
   },
   {
     id: "product-archt",
     title: "Product Architecture & Launch",
     description:
       "From idea to working platform. We scope, design, and build the version of your product that proves the concept, attracts investment, and doesn't collapse under its own weight when it's time to scale.",
-    iconPath: "/icons/consultancy/product-development.svg",
+    iconPath: "/icons/services/product-architecture-launch.svg",
   },
   {
     id: "visual-identity",
     title: "Visual Identity & UX Design",
     description:
       "Digital tools are only as good as they are usable. We combine strategic branding with intuitive interface design to ensure your system is as beautiful as it is functional.",
-    iconPath: "/icons/consultancy/branding-web-presence.svg",
+    iconPath: "/icons/services/visual-identity-ux.svg",
   },
   {
     id: "system-advisory",
     title: "Strategic Systems Advisory",
     description:
       "For founders and teams who need a senior technical and creative voice in the room. We bring systems thinking and user experience on the table, helping you make better decisions on architecture, tooling, design direction, and growth.",
-    iconPath: "/icons/consultancy/community-projects.svg",
+    iconPath: "/icons/services/strategic-systems-advisory.svg",
   },
 ];
 
